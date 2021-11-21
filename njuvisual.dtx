@@ -1,6 +1,4 @@
 % \iffalse meta-comment
-% !TeX program  = XeLaTeX
-% !TeX encoding = UTF-8
 %
 % Copyright (C) 2021 
 % by Nanjing University Linux User Group <nju.lug@yaoge123.cn>
@@ -26,18 +24,185 @@
 %
 % -----------------------------------------------------------------------
 %
+%<*internal>
+\iffalse
+%</internal>
+%
+%<*internal>
+\fi
+\begingroup
+  \def\NameOfLaTeXe{LaTeX2e}
+\expandafter\endgroup\ifx\NameOfLaTeXe\fmtname\else
+\csname fi\endcsname
+%</internal>
+%
+%<*install>
+\input l3docstrip.tex
+\keepsilent
+\askforoverwritefalse
+
+\preamble
+
+Copyright (C) 2021 
+by Nanjing University Linux User Group <nju.lug@yaoge123.cn>
+
+This file may be distributed and/or modified under the conditions of
+the LaTeX Project Public License, either version 1.3 of this license
+or (at your option) any later version.  The latest version of this
+license is in:
+
+   http://www.latex-project.org/lppl.txt
+
+and version 1.3 or later is part of all distributions of LaTeX version
+2005/12/01 or later.
+
+To produce the documentation run the original source files ending with `.dtx'
+through XeTeX.
+    
+\endpreamble
+
+\generate{
+  \usedir{tex/latex/njuvisual}
+    \file{\jobname.sty}        {\from{\jobname.dtx}{visual}}
+%</install>
+%<*internal>
+  \usedir{source/latex/njuvisual}
+    \file{\jobname.ins}        {\from{\jobname.dtx}{install}}
+%</internal>
+%<*install>
+}
+
+\obeyspaces
+\Msg{*************************************************************}
+\Msg{*                                                           *}
+\Msg{* To finish the installation you have to move the following *}
+\Msg{* files into a directory searched by TeX:                   *}
+\Msg{*                                                           *}
+\Msg{* The recommended directory is TDS:tex/latex/njuvisual      *}
+\Msg{*                                                           *}
+\Msg{*     njuvisual.ins                                         *}
+\Msg{*     njuvisual.sty                                         *}
+\Msg{*                                                           *}
+\Msg{* To produce the documentation, run the file njuvisual.dtx  *}
+\Msg{* through XeLaTeX.                                          *}
+\Msg{*                                                           *}
+\Msg{* Happy TeXing!                                             *}
+\Msg{*                                                           *}
+\Msg{*************************************************************}
+
+\endbatchfile
+%</install>
+%
+%<*internal>
+\fi
+%</internal>
+%
+%<visual>\NeedsTeXFormat{LaTeX2e}
+%<visual>\RequirePackage{expl3}
+%<!driver>\GetIdInfo  $Id: njuvisual.dtx 0.1.0 2021-11-21 19:30:00 +0800  NJU LUG <nju.lug@yaoge123.cn> $
+%<visual>  { LaTeX3 Package for NJU Visual Identity }
+%<visual>\ProvidesExplPackage{njuvisual}
+%<visual>{\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+%
+%<*driver>
+\documentclass{ctxdoc}
+\definecolor{njuviolet}{cmyk}{0.5,1,0,0.4}
+\definecolor{njumagenta}{cmyk}{0.05,1,0.55,0}
+\definecolor{njublue}{cmyk}{0.8,0.5,0,0}
+\definecolor{njuyellow}{cmyk}{0,0.3,1,0}
+\begin{document}
+  \DocInput{njuvisual.dtx}
+  \PrintChanges
+  \PrintIndex
+\end{document}
+%</driver>
+%
 % \fi
+%
+% \title{\color{njuviolet}{The \pkg{njuvisual} package\\ 南京大学视觉形象规范化标准}}
+% 
+% \author{^^A
+% Nanjing University Linux User Group
+% \thanks{E-mail: \href{mailto:nju.lug@yaoge123.cn}{nju.lug@yaoge123.cn}}}
+%
+% \date{v0.1.0 \\ Released 2021-11-21}
+%
+% \changes{v0.1}{2021/11/21}{将\pkg{njuvisual}分离为单独宏包。}
+%
+% \maketitle
+%
+% \begin{abstract}
+% 南京大学视觉形象规范化标准（\pkg{njuvisual}）宏包负责实现
+% \href{https://www.nju.edu.cn/3647/list.htm}{南京大学视觉形象规范化标准}
+% 中定义的配色方案和标识。
+% \end{abstract}
+%
+% \def\abstractname{Abstract}
+% \begin{abstract}
+% The \pkg{njuvisual} package
+% \end{abstract}
+%
+%
+% \clearpage
+%
+% \setcounter{tocdepth}{4}
+% \tableofcontents
+% \clearpage
+%
+% \EnableDocumentation
+%^^A \DisableDocumentation
+% 
+% \begin{documentation}
+% \section{使用方法}
+% 
+% \begin{function}[added=2021-09-24]{njuviolet,njumagenta,njublue,njuyellow}
+%   \begin{syntax}
+%     \tn{color}\Arg{颜色}
+%   \end{syntax}
+% 定义并使用南京大学视觉形象规范化标准中给定的四种标准色：
+%
+% {\color{njuviolet}紫色}\hspace{1em}{\color{njumagenta}洋红}\hspace{1em}
+% {\color{njublue}蓝色}\hspace{1em}{\color{njuyellow}黄色}
+%
+% \end{function}
+%
+% \begin{function}[added=2021-09-24]{\njuemblem}
+%   \begin{syntax}
+%     \tn{njuemblem}\oarg{颜色}\Arg{宽度}\Arg{高度}
+%   \end{syntax}
+% 生成指定颜色和大小的南京大学校徽。
+% \end{function}
+%
+% \begin{function}[added=2021-09-24]{\njuname,\njuname*}
+%   \begin{syntax}
+%     \tn{njuname}\oarg{颜色}\Arg{宽度}\Arg{高度}
+%     \tn{njuname*}\oarg{颜色}\Arg{宽度}\Arg{高度}
+%   \end{syntax}
+% 生成指定颜色和大小的南京大学校名，加星号的为英文校名。
+% \end{function}
+%
+% 
+% \begin{function}[added=2021-09-24]{\njumotto}
+%   \begin{syntax}
+%     \tn{njumotto}\oarg{颜色}\Arg{宽度}\Arg{高度}
+%   \end{syntax}
+% 生成指定颜色和大小的南京大学校训。
+% \end{function}
+%
+%
+% \begin{function}[added=2021-09-24]{\njuspirit}
+%   \begin{syntax}
+%     \tn{njuspirit}\oarg{颜色}\Arg{宽度}\Arg{高度}
+%   \end{syntax}
+% 生成指定颜色和大小的南京大学校风。
+% \end{function}
+% \end{documentation}
 %
 % \EnableImplementation
 %
 % \begin{implementation}
 %
-% \subsection{视觉识别系统 \pkg{njuvisual}}
-% \changes{v0.10}{2021/09/24}{添加南京大学视觉识别系统。}
-%
-% 南京大学视觉形象规范化标准（\pkg{njuvisual}）宏包是 \pkg{njuthesis} 文档类的子宏包，负责实现
-% \href{https://www.nju.edu.cn/3647/list.htm}{南京大学视觉形象规范化标准}
-% 中定义的配色方案和标识。
+% \subsection{代码实现}
 %
 %    \begin{macrocode}
 %<@@=njuvis>
