@@ -5,7 +5,7 @@
 % 
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
-% license or (at your option) any later version.  The latest version
+% license or (at your option) any later version. The latest version
 % of this license is in the file
 %
 %    https://www.latex-project.org/lppl.txt
@@ -139,7 +139,7 @@ through XeTeX.
 %
 % \def\abstractname{Abstract}
 % \begin{abstract}
-% The \pkg{njuvisual} package
+% The \pkg{njuvisual} package.
 % \end{abstract}
 %
 %
@@ -153,8 +153,14 @@ through XeTeX.
 %^^A \DisableDocumentation
 % 
 % \begin{documentation}
+% \section{宏包介绍}
+% 绘制南京大学相关的图案。
+% \section{安装}
+% \subsection{文件构成}
 % \section{使用方法}
 % 
+% \subsection{标准色彩}
+%
 % \begin{function}[added=2021-09-24]{njuviolet,njumagenta,njublue,njuyellow}
 %   \begin{syntax}
 %     \tn{color}\Arg{颜色}
@@ -166,11 +172,16 @@ through XeTeX.
 %
 % \end{function}
 %
+% 
+% \subsection{南大图标}
+%
 % \begin{function}[added=2021-09-24]{\njuemblem}
 %   \begin{syntax}
 %     \tn{njuemblem}\oarg{颜色}\Arg{宽度}\Arg{高度}
 %   \end{syntax}
 % 生成指定颜色和大小的南京大学校徽。
+%
+% 宽度和高度参数可以指定其一，另一个参数使用|!|即可自动适配。
 % \end{function}
 %
 % \begin{function}[added=2021-09-24]{\njuname,\njuname*}
@@ -196,6 +207,16 @@ through XeTeX.
 %   \end{syntax}
 % 生成指定颜色和大小的南京大学校风。
 % \end{function}
+% 
+% \subsection{院系图标}
+%
+% \begin{function}[]{\njulogo}
+%   \begin{syntax}
+%     \tn{njulogo}\oarg{学院代号}\oarg{颜色}\Arg{宽度}\Arg{高度}
+%   \end{syntax}
+% 生成指定颜色和大小的南京大学各院系图标。
+% \end{function}
+%
 % \end{documentation}
 %
 % \EnableImplementation
@@ -229,7 +250,7 @@ through XeTeX.
 %
 %
 % \begin{macro}{\@@_tikz_wrapper}
-% 可变大小的 tikz 容器。
+% 可变大小的 tikz 容器。\footnote{\env{arguments}环境的缩进问题已在\href{https://github.com/CTeX-org/ctex-kit/commit/838ebab8378b6b0477f5aece81ace28ae2a8bcd9}{838ebab}提交中修复}
 % \begin{arguments}
 %   \item 颜色
 %   \item 路径
