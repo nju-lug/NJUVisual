@@ -248,14 +248,20 @@ through XeTeX.
 % \end{macro}
 %
 % \begin{variable}{\@@_department_clist}
-% 定义南京大学院系名单。
+% 定义受支持的南京大学院系名单。
 %    \begin{macrocode}
 \clist_const:Nn \@@_department_clist 
-  {
-    nju,chin, history, philo, jc, law, nubs, sfs, im, sociology, math, 
-    physics, astronomy, chem, cs, software, ai, ese, eng, hjxy, sgos,  
-    as, life, med, sme, dii, hwxy, arch, marxism, art, edu
-  }
+{
+  nju, dii, eng, 
+  % chin, history, philo, jc, law, nubs, sfs, im, sociology, math, 
+  % physics, astronomy, chem, cs, software, ai, ese, hjxy, sgos,  
+  % as, life, med, sme, hwxy, arch, marxism, art, edu
+}
+\msg_new:nnn { njuvisual } { unsupported-department }
+{
+  "#1"~ is~ not~ an~ valid~ option~ \\\\
+  Please~ check~ your~ spelling~ or~ refer~ to~ the~ department's~ official~ website. \\
+}
 %    \end{macrocode}
 % \end{variable}
 %
@@ -299,7 +305,7 @@ through XeTeX.
   \clist_if_in:NnTF \@@_department_clist { #1 }
   { \@@_tikz_wrapper 
     { #2 } { \use:c { @@_path_emblem_ #1 } } { #3 } { #4 } } 
-  { \njuspirit{4cm}{!} } % 此处应报错
+    { \msg_fatal:nnn { njuvisual } { unsupported-department } { #1 } }
 }
 %    \end{macrocode}
 % \end{macro}
@@ -317,7 +323,7 @@ through XeTeX.
     { \@@_tikz_wrapper 
       { #3 } { \use:c { @@_path_name_ #2 _cn } } { #4 } { #5 } }
   }
-  { \njuspirit{4cm}{!} } % 此处应报错
+  { \msg_fatal:nnn { njuvisual } { unsupported-department } { #2 } }
 }
 %    \end{macrocode}
 % \end{macro}
