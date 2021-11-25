@@ -251,12 +251,15 @@ through XeTeX.
 %    \end{macrocode}
 % \end{macro}
 %
-% 将标准色设定为初始颜色值
+% \begin{macro}{\c_@@_color_default_clist,\c_@@_color_ai_clist}
+% 设定受支持的院系标准色
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_color_default_clist { njuviolet, white }
+\clist_const:Nn \c_@@_color_ai_clist { nju-ai-orange, nju-ai-darkblue }
 %    \end{macrocode}
+% \end{macro}
 %
-% \begin{variable}{\c_@@_department_clist}
+% \begin{variable}{\c_@@_department_all_clist,\c_@@_department_emblem_clist,\c_@@_department_name_clist,\c_@@_department_color_clist}
 % 定义受支持的南京大学院系名单。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_department_all_clist
@@ -266,18 +269,22 @@ through XeTeX.
   as, life, med, sme, hwxy, arch, marxism, art, edu }
 \clist_const:Nn \c_@@_department_emblem_clist { nju, dii, eng }
 \clist_const:Nn \c_@@_department_name_clist   { nju }
-\clist_const:Nn \c_@@_department_color_clist  { }
-
-\msg_new:nnn { njuvisual } { unsupported-department }
-{ "#1"~ is~ not~ an~ valid~ option~ \\\\
-  Please~ check~ your~ spelling~ or~ refer~ to~ the~ department's~ official~ website. \\ }
+\clist_const:Nn \c_@@_department_color_clist  { ai }
 %    \end{macrocode}
 % \end{variable}
 %
+% 定义对不支持的院系的报错信息。
+%    \begin{macrocode}
+\msg_new:nnn { njuvisual } { unsupported-department }
+{ "#1"~ is~ not~ an~ valid~ option~ \\\\
+  Please~ refer~ to~ the~ package~ documentation~  for~ supported~ 
+  departments~ and~ check~ your~ spelling. \\ }
+%    \end{macrocode}
+%
 % \subsection{内部命令}
 %
-% \begin{macro}{\@@_tikz_wrapper}
-% 可变大小的 tikz 容器。\footnote{\env{arguments}环境的缩进问题已在\href{https://github.com/CTeX-org/ctex-kit/commit/838ebab8378b6b0477f5aece81ace28ae2a8bcd9}{838ebab}提交中修复}
+% \begin{macro}{\@@_tikz_wrapper:nnn}
+% 可变大小的 tikz 容器。\footnote{此处手动调整了列表缩进，实际上\env{arguments}环境的缩进问题已在\href{https://github.com/CTeX-org/ctex-kit/commit/838ebab8378b6b0477f5aece81ace28ae2a8bcd9}{838ebab}提交中修复}
 % \begin{arguments}
 %   \item 路径
 %   \item 宽度
@@ -285,7 +292,7 @@ through XeTeX.
 % \end{arguments}
 % 封装 resizebox 和 tikzpicture 环境，减少重复。
 %    \begin{macrocode}
-\NewDocumentCommand \@@_tikz_wrapper { m m m }
+\cs_new_protected:Npn \@@_tikz_wrapper:nnn #1#2#3
 {
   \resizebox { #2 } { #3 } {
     \begin{tikzpicture}[y=0.80pt, x=0.80pt, yscale=-1,
@@ -307,7 +314,6 @@ through XeTeX.
 {
   \tl_if_novalue:nTF { #2 }
   { \clist_if_in:NnTF \c_@@_department_color_clist { #1 }
-    % TODO: 理论可行，未测试
     { \tl_set:Nn \l_@@_color_a_tl { \clist_item:cn { c_@@_color_ #1 _clist } { 1 } }
       \tl_set:Nn \l_@@_color_b_tl { \clist_item:cn { c_@@_color_ #1 _clist } { 2 } } }
     { \tl_set:Nn \l_@@_color_a_tl { \clist_item:Nn \c_@@_color_default_clist { 1 } }
@@ -315,7 +321,7 @@ through XeTeX.
   { \clist_if_in:NnTF \c_@@_department_color_clist { #1 }
     { \tl_set:Nn \l_@@_color_a_tl { #2    }
       \tl_set:Nn \l_@@_color_b_tl { #2    } }
-    { \tl_set:Nn \l_@@_color_a_tl { #2    } % 一直不能进入第一个分支
+    { \tl_set:Nn \l_@@_color_a_tl { #2    }
       \tl_set:Nn \l_@@_color_b_tl { white } } }
 }
 %    \end{macrocode}
@@ -339,7 +345,7 @@ through XeTeX.
 {
   \clist_if_in:NnTF \c_@@_department_emblem_clist { #1 }
   { \@@_set_color:nn { #1 } { #2 }
-    \@@_tikz_wrapper { \use:c { @@_path_emblem_ #1 } } { #3 } { #4 } }
+    \@@_tikz_wrapper:nnn { \use:c { @@_path_emblem_ #1 } } { #3 } { #4 } }
   { \msg_fatal:nnn { njuvisual } { unsupported-department } { #1 } }
 }
 %    \end{macrocode}
@@ -353,8 +359,8 @@ through XeTeX.
   \clist_if_in:NnTF \c_@@_department_name_clist { #2 }
   { \@@_set_color:nn { #2 } { #3 }
     \bool_if:NTF { #1 }
-    { \@@_tikz_wrapper { \use:c { @@_path_name_ #2 _en } } { #4 } { #5 } }
-    { \@@_tikz_wrapper { \use:c { @@_path_name_ #2 _cn } } { #4 } { #5 } } }
+    { \@@_tikz_wrapper:nnn { \use:c { @@_path_name_ #2 _en } } { #4 } { #5 } }
+    { \@@_tikz_wrapper:nnn { \use:c { @@_path_name_ #2 _cn } } { #4 } { #5 } } }
   { \msg_fatal:nnn { njuvisual } { unsupported-department } { #2 } }
 }
 %    \end{macrocode}
@@ -366,7 +372,7 @@ through XeTeX.
 %    \begin{macrocode}
 \NewDocumentCommand \njumotto  { o m m }
 { \@@_set_color:nn { nju } { #1 }
-  \@@_tikz_wrapper { \@@_path_motto } { #2 } { #3 } }
+  \@@_tikz_wrapper:nnn { \@@_path_motto } { #2 } { #3 } }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -376,7 +382,7 @@ through XeTeX.
 %    \begin{macrocode}
 \NewDocumentCommand \njuspirit { o m m }
 { \@@_set_color:nn { nju } { #1 }
-  \@@_tikz_wrapper { \@@_path_spirit } { #2 } { #3 } }
+  \@@_tikz_wrapper:nnn { \@@_path_spirit } { #2 } { #3 } }
 %</visual>
 %    \end{macrocode}
 % \end{macro}
