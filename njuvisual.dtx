@@ -264,21 +264,17 @@ through XeTeX.
 % 定义受支持的南京大学院系名单。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_department_all_clist
-{
-  nju, dii, eng,
+{ nju, dii, eng,
   chin, history, philo, jc, law, nubs, sfs, im, sociology, math,
   physics, astronomy, chem, cs, software, ai, ese, hjxy, sgos,
-  as, life, med, sme, hwxy, arch, marxism, art, edu
-}
+  as, life, med, sme, hwxy, arch, marxism, art, edu }
 \clist_const:Nn \c_@@_department_emblem_clist { nju, dii, eng }
-\clist_const:Nn \c_@@_department_name_clist { nju }
-\clist_const:Nn \c_@@_department_color_clist { }
-\clist_new:N \l_temp_clist
+\clist_const:Nn \c_@@_department_name_clist   { nju }
+\clist_const:Nn \c_@@_department_color_clist  { }
+
 \msg_new:nnn { njuvisual } { unsupported-department }
-{
-  "#1"~ is~ not~ an~ valid~ option~ \\\\
-  Please~ check~ your~ spelling~ or~ refer~ to~ the~ department's~ official~ website. \\
-}
+{ "#1"~ is~ not~ an~ valid~ option~ \\\\
+  Please~ check~ your~ spelling~ or~ refer~ to~ the~ department's~ official~ website. \\ }
 %    \end{macrocode}
 % \end{variable}
 %
@@ -313,14 +309,13 @@ through XeTeX.
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_set_color:nn #1#2
 {
-  \IfNoValueTF { #2 }
+  \tl_if_novalue:nTF { #2 }
     {
+      % TODO: 理论可行，未测试
       \clist_if_in:NnTF \c_@@_department_color_clist { #1 }
-        { \clist_set_eq:NN  \l_temp_clist \c_@@_color_default_clist % 待修改，\use:c不能用于clist
-          \tl_set:Nn \l_@@_color_a_tl {
-            \clist_item:Nn \l_temp_clist { 1 } }
-          \tl_set:Nn \l_@@_color_b_tl {
-            \clist_item:Nn \l_temp_clist { 2 } }
+        {
+          \tl_set:Nn \l_@@_color_a_tl { \clist_item:cn { c_@@_color_ #1 _clist } { 1 } }
+          \tl_set:Nn \l_@@_color_b_tl { \clist_item:cn { c_@@_color_ #1 _clist } { 2 } }
         }
         {
           \tl_set:Nn \l_@@_color_a_tl {
@@ -330,8 +325,11 @@ through XeTeX.
         }
     }
     {
-      \tl_set:Nn \l_@@_color_a_tl { #2    } % 一直不能进入第一个分支
-      \tl_set:Nn \l_@@_color_b_tl { white }
+      \clist_if_in:NnTF \c_@@_department_color_clist { #1 }
+      { \tl_set:Nn \l_@@_color_a_tl { #2    }
+        \tl_set:Nn \l_@@_color_b_tl { #2    } }
+      { \tl_set:Nn \l_@@_color_a_tl { #2    } % 一直不能进入第一个分支
+        \tl_set:Nn \l_@@_color_b_tl { white } }
     }
 }
 %    \end{macrocode}
@@ -369,7 +367,7 @@ through XeTeX.
   \clist_if_in:NnTF \c_@@_department_name_clist { #2 }
   {
     \@@_set_color:nn { #2 } { #3 }
-    \IfBooleanTF { #1 }
+    \bool_if:NTF { #1 }
     { \@@_tikz_wrapper { \use:c { @@_path_name_ #2 _en } } { #4 } { #5 } }
     { \@@_tikz_wrapper { \use:c { @@_path_name_ #2 _cn } } { #4 } { #5 } }
   }
