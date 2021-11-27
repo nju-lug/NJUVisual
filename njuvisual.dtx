@@ -103,11 +103,8 @@ through XeTeX.
 %
 %<*driver>
 \documentclass{ctxdoc}
+\usepackage{multirow,njuvisual}
 \setlist[1]{labelindent=0.5em}
-\definecolor{njuviolet}{cmyk}{0.5,1,0,0.4}
-\definecolor{njumagenta}{cmyk}{0.05,1,0.55,0}
-\definecolor{njublue}{cmyk}{0.8,0.5,0,0}
-\definecolor{njuyellow}{cmyk}{0,0.3,1,0}
 \begin{document}
     \DocInput{njuvisual.dtx}
     \DocInput{njuvisual-curves.dtx}
@@ -139,54 +136,138 @@ through XeTeX.
 % The \pkg{njuvisual} package provides an interface to display logos related to Nanjing University.
 % \end{abstract}
 %
-%
 % \clearpage
 %
-% \setcounter{tocdepth}{4}
 % \tableofcontents
-% \clearpage
 %
 % \EnableDocumentation
-%^^A \DisableDocumentation
+%
 %
 % \begin{documentation}
+%
 % \section{宏包介绍}
-% 绘制南京大学相关的图案。
+%
+% \pkg{njuvisual} 用于收录南京大学及其各院系制定的标准色彩及图标，并提供简洁的绘制指令。
+%
+% 本宏包衍生自 \pkg{njuthesis}，依赖 \hologo{LaTeX3} 项目
+% 中的 \pkg{expl3}、\pkg{xparse} 和 \pkg{l3keys2e} 宏包。
+% 特别感谢 \pkg{fduthesis} 与 \pkg{zhlipsum} 提供的处理思路。
 %
 % \section{使用方法}
 %
 % \subsection{标准色彩}
 %
-% \begin{function}[added=2021-09-24]{njuviolet,njumagenta,njublue,njuyellow}
+% \begin{function}{\color}
 %   \begin{syntax}
 %     \tn{color}\Arg{颜色}
 %   \end{syntax}
-% 定义并使用南京大学视觉形象规范化标准中给定的四种标准色：
-%
-% {\color{njuviolet}紫色}\hspace{1em}{\color{njumagenta}洋红}\hspace{1em}
-% {\color{njublue}蓝色}\hspace{1em}{\color{njuyellow}黄色}
-%
+% 使用标准色彩。
 % \end{function}
 %
+% 本宏包定义的所有标准色彩见表~\ref{tab:pre-defined-colors}。
+% \begingroup
+% \def\B#1{\color{#1}$\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare$}
+% \def\M#1{\multirow{2}*{#1}}
+% \def\MN#1{\multirow{4}*{#1}}
+% \begin{table}[htb]
+%   \caption{预定义标准色} \label{tab:pre-defined-colors}
+%   \centering\small
+%   \begin{tabular}{cccc}
+%     \toprule
+%       名称                   & 颜色名称        & CMYK 数值                & 示例 \\
+%     \midrule
+%       \MN{南京大学}          & |njuviolet|     & $0.50, 1   , 0   , 0.40$ & \B{njuviolet} \\
+%                              & |njumagenta|    & $0.05, 1   , 0.55, 0$    & \B{njumagenta} \\
+%                              & |njublue|       & $0.80, 0.50, 0   , 0$    & \B{njublue} \\
+%                              & |njuyellow|     & $0   , 0.30, 1   , 0$    & \B{njuyellow} \\
+%       \M{人工智能学院}       & |nju-ai-blue|   & $0.75, 0.65, 0   , 0$    & \B{nju-ai-blue} \\
+%                              & |nju-ai-orange| & $0   , 0.75, 1   , 0$    & \B{nju-ai-orange} \\
+%       \M{计算机科学与技术系} & |nju-cs-blue|   & $0.89, 0.66, 0.13, 0$    & \B{nju-cs-blue} \\
+%                              & |nju-cs-green|  & $0.60, 0.23, 1   , 0$    & \B{nju-cs-green} \\
+%     \bottomrule
+%   \end{tabular}
+% \end{table}
+% \endgroup
 %
-% \subsection{南大图标}
+% \subsection{标准图标}
 %
-% \begin{function}[added=2021-09-24]{\njuemblem}
+% \begin{function}[added=2021-09-24,updated=2021-11-27]{\njuemblem}
 %   \begin{syntax}
-%     \tn{njuemblem}\oarg{名称}\oarg{颜色}\Arg{宽度}\Arg{高度}
+%     \tn{njuemblem}\oarg{选项}\Arg{宽度}\Arg{高度}
 %   \end{syntax}
-% 生成指定颜色和大小的南京大学徽章，默认生成校徽。
-%
-% 第一个参数为各学院网页的子域名。颜色默认使用南大紫色。宽度和高度参数可以指定其一，另一个参数使用|!|即可自动适配。
+%   生成徽标，默认生成校徽。参数 \meta{选项} 是可选的。注意各
+%   参数之间不可以有空格。
 % \end{function}
 %
-% \begin{function}[added=2021-09-24]{\njuname,\njuname*}
+% \begin{function}[added=2021-09-24,updated=2021-11-27]{\njuname,\njuname*}
 %   \begin{syntax}
-%     \tn{njuname}\oarg{名称}\oarg{颜色}\Arg{宽度}\Arg{高度}
-%     \tn{njuname*}\oarg{名称}\oarg{颜色}\Arg{宽度}\Arg{高度}
+%     \tn{njuname}\oarg{选项}\Arg{宽度}\Arg{高度}
+%     \tn{njuname*}\oarg{选项}\Arg{宽度}\Arg{高度}
 %   \end{syntax}
-% 生成指定颜色和大小的南京大学名称，加星号的为英文名称，默认生成校名。
+%   生成名称，带有可选星号的命令会生成英文名称，默认生成校名。要求同上。
 % \end{function}
+%
+% 可选参数 \meta{选项} 可使用两种方式给出：
+% \begin{itemize}
+%   \item 颜色名称，使用颜色名称即默认生成校徽、校名
+%   \item 使用英文半角逗号分隔的键值列表
+% \end{itemize}
+%
+% 其中，键值列表支持的选项见下。
+%
+% \begin{function}[added=2021-11-27]{color,color*}
+%   \begin{syntax}
+%     color = \meta{主要颜色}
+%     color* = \meta{辅助颜色}
+%   \end{syntax}
+%   定制图标颜色。
+% \end{function}
+%
+% 对于绝大多数南京大学院系，其图标仅使用两种以内的颜色，因此本宏包仅提供两种颜色选项。
+% 其中的 |color*| 选项一般无需修改，原因在于现有的图标可被总结为下列若干种情况：
+% \begin{description}
+%   \item[纯色、透明底色] 如南大徽标，无辅助颜色，|color*| 选项无效
+%   \item[纯色、白色] 如现工徽标，辅助颜色默认为白色，无需进行修改
+%   \item[双色] 如计科徽标，主要颜色、辅助颜色已预先进行定义，为美观考虑，修改主要颜色时会将图标颜色统一为一种
+% \end{description}
+%
+% \begin{function}[added=2021-11-27]{department}
+%   \begin{syntax}
+%     department = \meta{院系名称}
+%   \end{syntax}
+%   院系名称。
+% \end{function}
+%
+% 为保证无歧义，|department| 选项使用的名称来自于院系官网域名。如化学化工学院域名为\url{https://chem.nju.edu.cn/}，其选项名称即为 |chem|。
+%
+% 目前的支持情况如表~\ref{tab:supported-departments-list}所示。对于不支持的院系，本宏包会抛出异常。
+% \begingroup
+% \def\B{\bullet}
+% \begin{table}[htb]
+%   \caption{收录院系列表} \label{tab:supported-departments-list}
+%   \centering\small
+%   \begin{tabular}{cccccccc}
+%     \toprule
+%       名称 & 选项名称 & emblem & name & name* \\
+%     \midrule
+%       匡亚明学院             & |dii| & \B & & \\
+%       现代工程与应用科学学院 & |eng| & \B & & \\
+%       人工智能学院           & |ai| & \B & & \\
+%       计算机科学与技术系     & |cs| & \B & & \\
+%     \bottomrule
+%   \end{tabular}
+% \end{table}
+% \endgroup
+%
+% 举例如下：
+% \begin{ctexexam}
+%   \njuemblem{!}{3cm}                           % 默认生成指定大小的紫色南大校徽
+%   \njuname{4cm}{!}                             % 默认生成指定大小的紫色南大中文校名
+%   \njuname*{4cm}{!}                            % 默认生成指定大小的紫色南大英文校名
+%   \njuemblem[black]{!}{3cm}                    % 黑色的南大校徽
+%   \njuemblem[department=dii]{!}{4cm}           % 紫色匡院徽标
+%   \njuemblem[department=cs,color=blue]{!}{3cm} % 纯蓝色计科徽标
+% \end{ctexexam}
 %
 %
 % \begin{function}[added=2021-09-24]{\njumotto}
@@ -210,7 +291,7 @@ through XeTeX.
 %
 % \begin{implementation}
 %
-% \section{代码实现}
+% \section{实现细节}
 %
 %    \begin{macrocode}
 %<@@=njuvis>
@@ -226,18 +307,18 @@ through XeTeX.
 %
 % \subsection{定义变量}
 %
-% \begin{macro}{\l_@@_department_tl}
-% 存储院系
-%    \begin{macrocode}
-\tl_new:N \l_@@_department_tl
-%    \end{macrocode}
-% \end{macro}
-%
 % \begin{macro}{\l_@@_color_a_tl,\l_@@_color_b_tl}
 % 存储使用的颜色。
 %    \begin{macrocode}
 \tl_new:N \l_@@_color_a_tl
 \tl_new:N \l_@@_color_b_tl
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\l_@@_department_tl}
+% 存储院系
+%    \begin{macrocode}
+\tl_new:N \l_@@_department_tl
 %    \end{macrocode}
 % \end{macro}
 %
@@ -265,15 +346,33 @@ through XeTeX.
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{variable}{\c_@@_department_all_clist,\c_@@_department_emblem_clist,\c_@@_department_name_clist,\c_@@_department_color_clist}
-% 定义受支持的南京大学院系名单。
+% \begin{variable}{\c_@@_department_all_clist}
+% 定义南京大学全体院系名单。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_department_all_clist
 { nju, dii, eng, chin, history, philo, jc, law, nubs, sfs, im, sociology, 
   math, physics, astronomy, chem, cs, software, ai, ese, hjxy, sgos,
   as, life, med, sme, hwxy, arch, marxism, art, edu }
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\c_@@_department_emblem_clist}
+% 定义受图标支持的南京大学院系名单。
+%    \begin{macrocode}
 \clist_const:Nn \c_@@_department_emblem_clist { nju, dii, eng, cs, ai }
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\c_@@_department_name_clist}
+% 定义受名称支持的南京大学院系名单。
+%    \begin{macrocode}
 \clist_const:Nn \c_@@_department_name_clist   { nju }
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\c_@@_department_color_clist}
+% 定义受色彩支持的南京大学院系名单。
+%    \begin{macrocode}
 \clist_const:Nn \c_@@_department_color_clist  { cs, ai }
 %    \end{macrocode}
 % \end{variable}
@@ -291,12 +390,14 @@ through XeTeX.
 % \begin{macro}{\@@_set_color:}
 % \changes{v0.1}{2021/11/25}{完善设定颜色的方法。}
 % 设定颜色。
-% 如果没有设定颜色，则使用默认颜色。如果对于默认有多个颜色的进行设置，则统一为设定的颜色。
 %    \begin{macrocode}
 \cs_new_protected:Nn \@@_set_color:
   {
     \str_if_eq:VnTF \l_@@_color_a_tl { default }
       { 
+%    \end{macrocode}
+% 如果没有单独设定，则使用默认颜色。
+%    \begin{macrocode}
         \clist_if_in:NVTF \c_@@_department_color_clist \l_@@_department_tl
           { \tl_set:Nn \l_@@_color_a_tl 
               { \clist_item:cn { c_@@_color_ \l_@@_department_tl _clist } { 1 } }
@@ -305,6 +406,9 @@ through XeTeX.
           { \tl_set:Nn \l_@@_color_a_tl { njuviolet } }
       } 
       { \clist_if_in:NVT \c_@@_department_color_clist \l_@@_department_tl
+%    \end{macrocode}
+% 将双色图标设定为纯色。
+%    \begin{macrocode}
           { \tl_set_eq:NN \l_@@_color_b_tl \l_@@_color_a_tl } }
   }
 %    \end{macrocode}
@@ -337,17 +441,6 @@ through XeTeX.
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_clear_setting:}
-% 清空颜色和院系设置。
-%    \begin{macrocode}
-\cs_new_protected:Nn \@@_clear_setting:
-  {
-    \keys_set:nn { njuvisual }
-      { color = default, color* = white, department = nju }
-  }
-%    \end{macrocode}
-% \end{macro}
-%
 % \begin{macro}{\@@_colon}
 % 定义类别为 other 的冒号，用于在 Expl3 中表示路径
 %    \begin{macrocode}
@@ -360,52 +453,72 @@ through XeTeX.
 %
 % \begin{macro}{\njuemblem}
 % \changes{v0.1}{2021/11/24}{将学校和院系的徽标和名称命令统一。}
-% 【待修改】
+% 定义南京大学标准徽标。
+% \begin{arguments}
+%   \item 颜色或者键值对
+%   \item 宽度
+%   \item 高度
+% \end{arguments}
 %    \begin{macrocode}
 \NewDocumentCommand \njuemblem { O { njuviolet } m m }
 {
   \group_begin:
+%    \end{macrocode}
+% 根据参数是否含有 |=| 来判断该参数是段落数还是选项列表。
+%    \begin{macrocode}
     \@@_if_key_value_list:nTF { #1 }
     {
       \keys_set:nn { njuvisual } { #1 }
-      \clist_if_in:NVTF \c_@@_department_emblem_clist \l_@@_department_tl
-        { 
-          \@@_set_color:
-          \@@_tikz_wrapper:nnn { \use:c { @@_path_emblem_ \l_@@_department_tl } } { #2 } { #3 } }
-        { \msg_error:nnx { njuvisual } { unsupported-department } { \l_@@_department_tl } }
+%    \end{macrocode}
+% 检查是否受支持。
+%    \begin{macrocode}
+          \clist_if_in:NVTF \c_@@_department_emblem_clist \l_@@_department_tl
+        { \@@_set_color:
+          \@@_tikz_wrapper:nnn 
+            { \use:c { @@_path_emblem_ \l_@@_department_tl } } { #2 } { #3 } }
+        { \msg_error:nnx { njuvisual } 
+            { unsupported-department } { \l_@@_department_tl } }
     }
-    {
-      \tl_set:Nn \l_@@_color_a_tl { #1 }
-      \@@_tikz_wrapper:nnn { \@@_path_emblem_nju } { #2 } { #3 }
-    }
+    { \tl_set:Nn \l_@@_color_a_tl { #1 }
+      \@@_tikz_wrapper:nnn { \@@_path_emblem_nju } { #2 } { #3 } }
   \group_end:
 }
 %    \end{macrocode}
 % \end{macro}
 %
+%
 % \begin{macro}{\njuname,\njuname*}
-% 【待修改】
+% 定义南京大学标准名称。
+% \begin{arguments}
+%   \item 可选星号
+%   \item 颜色或者键值对
+%   \item 宽度
+%   \item 高度
+% \end{arguments}
 %    \begin{macrocode}
-\NewDocumentCommand \njuname { t* O { njuviolet } o m m }
+\NewDocumentCommand \njuname { t* O { njuviolet } m m }
 {
   \group_begin:
     \@@_if_key_value_list:nTF { #2 }
     {
       \keys_set:nn { njuvisual } { #2 }
-      \clist_if_in:NVTF \c_@@_department_emblem_clist \l_@@_department_tl
+      \clist_if_in:NVTF \c_@@_department_name_clist \l_@@_department_tl
         { 
           \@@_set_color:
           \bool_if:NTF { #1 }
-            { \@@_tikz_wrapper:nnn { \use:c { @@_path_name_ #2 _en } } { #4 } { #5 } }
-            { \@@_tikz_wrapper:nnn { \use:c { @@_path_name_ #2 _cn } } { #4 } { #5 } }
+            { \@@_tikz_wrapper:nnn 
+                { \use:c { @@_path_name_ #2 _en } } { #3 } { #4 } }
+            { \@@_tikz_wrapper:nnn 
+                { \use:c { @@_path_name_ #2 _cn } } { #3 } { #4 } }
         }
-        { \msg_error:nnx { njuvisual } { unsupported-department } { \l_@@_department_tl } }
+        { \msg_error:nnx { njuvisual } 
+            { unsupported-department } { \l_@@_department_tl } }
     }
     {
       \tl_set:Nn \l_@@_color_a_tl { #2 }
       \bool_if:NTF { #1 }
-        { \@@_tikz_wrapper:nnn { \@@_path_name_nju_en } { #4 } { #5 } }
-        { \@@_tikz_wrapper:nnn { \@@_path_name_nju_cn } { #4 } { #5 } }
+        { \@@_tikz_wrapper:nnn { \@@_path_name_nju_en } { #3 } { #4 } }
+        { \@@_tikz_wrapper:nnn { \@@_path_name_nju_cn } { #3 } { #4 } }
     }
   \group_end:
 }
@@ -415,6 +528,11 @@ through XeTeX.
 %
 % \begin{macro}{\njumotto}
 % 定义南京大学校训。
+% \begin{arguments}
+%   \item 颜色
+%   \item 宽度
+%   \item 高度
+% \end{arguments}
 %    \begin{macrocode}
 \NewDocumentCommand \njumotto  { o m m }
 { 
@@ -429,6 +547,11 @@ through XeTeX.
 %
 % \begin{macro}{\njuspirit}
 % 定义南京大学校风。
+% \begin{arguments}
+%   \item 颜色
+%   \item 宽度
+%   \item 高度
+% \end{arguments}
 %    \begin{macrocode}
 \NewDocumentCommand \njuspirit { o m m }
 { 
