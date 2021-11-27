@@ -234,29 +234,10 @@ through XeTeX.
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{njuviolet,njumagenta,njublue,njuyellow}
-% 定义南京大学视觉形象规范化标准中给定的四种标准色：紫色、洋红、蓝色、黄色。
-%    \begin{macrocode}
-\definecolor { njuviolet  } { cmyk } { 0.50, 1   , 0   , 0.40 }
-\definecolor { njumagenta } { cmyk } { 0.05, 1   , 0.55, 0    }
-\definecolor { njublue    } { cmyk } { 0.80, 0.50, 0   , 0    }
-\definecolor { njuyellow  } { cmyk } { 0   , 0.30, 1   , 0    }
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{nju-ai-orange,nju-ai-darkblue}
-% 定义人工智能学院标准色
-%    \begin{macrocode}
-\definecolor { nju-ai-orange   } { cmyk } { 0   , 0.75, 1   , 0    }
-\definecolor { nju-ai-darkblue } { cmyk } { 0.75, 0.65, 0   , 0    }
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\c_@@_color_default_clist,\c_@@_color_ai_clist}
-% 设定受支持的院系标准色
+% \begin{macro}{\c_@@_color_default_clist}
+% 设定默认标准色
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_color_default_clist { njuviolet, white }
-\clist_const:Nn \c_@@_color_ai_clist { nju-ai-orange, nju-ai-darkblue }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -264,13 +245,12 @@ through XeTeX.
 % 定义受支持的南京大学院系名单。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_department_all_clist
-{ nju, dii, eng,
-  chin, history, philo, jc, law, nubs, sfs, im, sociology, math,
-  physics, astronomy, chem, cs, software, ai, ese, hjxy, sgos,
+{ nju, dii, eng, chin, history, philo, jc, law, nubs, sfs, im, sociology, 
+  math, physics, astronomy, chem, cs, software, ai, ese, hjxy, sgos,
   as, life, med, sme, hwxy, arch, marxism, art, edu }
-\clist_const:Nn \c_@@_department_emblem_clist { nju, dii, eng }
+\clist_const:Nn \c_@@_department_emblem_clist { nju, dii, eng, cs, ai }
 \clist_const:Nn \c_@@_department_name_clist   { nju }
-\clist_const:Nn \c_@@_department_color_clist  { ai }
+\clist_const:Nn \c_@@_department_color_clist  { cs, ai }
 %    \end{macrocode}
 % \end{variable}
 %
