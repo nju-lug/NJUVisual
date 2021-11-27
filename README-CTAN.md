@@ -6,16 +6,12 @@ The `njuvisual` package provides an interface to display logos related to Nanjin
 Basic usage
 -----------
 
-    \njuemblem
-    \njuname
-    \njumotto
-    \njuspirit
+    \njuemblem{3cm}{!}
+    \njuname{3cm}{!}
+    \njumotto{!}{3cm}
+    \njuspirit{!}{3cm}
 
 More information can be found in the package documentation.
-
-Installation
-------------
-
 
 Contributing
 ------------
