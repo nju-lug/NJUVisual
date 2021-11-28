@@ -1,0 +1,57 @@
+name: Build LaTeX document
+on: 
+  push:
+    branches:
+      - master
+
+    tags:
+      - v*
+
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        latex: [xelatex]
+    if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+
+      - name: Github Action for LaTeX dtx to cls
+        uses: FengChendian/latex-dtx2cls-action@4.0.1
+        with:
+          root_file: njuvisual.dtx
+          working_directory: ./
+
+      - name: Set Version
+        run: echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: Compile to PDF
+        uses: HermitSun/latex-action@v3
+        with:
+          root_file: njuvisual.dtx
+          latexmk_use_${{ matrix.latex }}: true
+          args: "-bibtex"
+          pre_compile: "xetex njuvisual.dtx"
+          post_compile: "mv njuvisual.pdf njuvisual-$VERSION.pdf"
+
+      - name: Zip CTAN Source
+        run: |
+          mkdir -p njuvisual/
+          cp njuvisual-$VERSION.pdf njuvisual/njuvisual.pdf
+          cp README-CTAN.md njuvisual/README.md
+          cp njuvisual.dtx njuvisual-curves.dtx njuvisual.ins njuvisual/
+          zip -r njuvisual-$VERSION.zip njuvisual/
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            njuvisual-v*.pdf
+            njuvisual-v*.zip
