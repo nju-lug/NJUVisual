@@ -1,7 +1,7 @@
 The `njuvisual` package
 =======================
 
-The `njuvisual` package provides an interface to display logos related to Nanjing University.
+The `njuvisual` package collects standard colors and logos related to Nanjing University, saves the vector logos as tikz pictures and provides a user-friendly interface to display them in documents and beamers.
 
 Basic usage
 -----------
@@ -11,7 +11,7 @@ Basic usage
     \njumotto{!}{3cm}
     \njuspirit{!}{3cm}
 
-More information can be found in the package documentation.
+More information can be found in the [package documentation](http://mirrors.ctan.org/macros/latex/contrib/njuvisual/njuvisual.pdf).
 
 Contributing
 ------------

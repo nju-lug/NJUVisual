@@ -10,6 +10,17 @@
 %
 %    https://www.latex-project.org/lppl.txt
 %
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Yu Xiong.
+%
+% This work consists of the files njuvisual.dtx,
+%                                 njuvisual-curves.dtx,
+%           and the derived files njuvisual.ins,
+%                                 njuvisual.sty,
+%                                 njuvisual.pdf,
+%                             and README.md.
+%
 % -----------------------------------------------------------------------
 %
 % The development version of the template can be found at
@@ -33,7 +44,7 @@
 %</internal>
 %
 %<*install>
-\input l3docstrip.tex
+\input docstrip.tex
 \keepsilent
 \askforoverwritefalse
 
@@ -60,7 +71,7 @@ through XeTeX.
 \generate{
   \usedir{tex/latex/njuvisual}
     \file{\jobname.sty} {\from{\jobname.dtx}{visual}
-                        \from{\jobname-curves.dtx}{visual}}
+                         \from{\jobname-curves.dtx}{visual}}
 %</install>
 %<*internal>
   \usedir{source/latex/njuvisual}
@@ -130,12 +141,16 @@ through XeTeX.
 % \maketitle
 %
 % \begin{abstract}
-% 南京大学视觉形象规范化标准（\pkg{njuvisual}）宏包负责实现\href{https://www.nju.edu.cn/3647/list.htm}{南京大学视觉形象规范化标准}以及各院系制定的配色方案和标识。
+% 南京大学视觉形象规范化标准（\pkg{njuvisual}）宏包负责收集南京大学官方以及下属
+% 各院系制定的配色方案和标识，将这些矢量图标通过 \pkg{tikz} 曲线进行存储，并提
+% 供简明的接口以便在文档和幻灯片中使用。
 % \end{abstract}
 %
 % \def\abstractname{Abstract}
 % \begin{abstract}
-% The \pkg{njuvisual} package provides an interface to display logos related to Nanjing University.
+% The \pkg{njuvisual} package collects standard colors and logos related to 
+% Nanjing University, saves the vector logos as \pkg{tikz} pictures and 
+% provides a user-friendly interface to display them in documents and beamers.
 % \end{abstract}
 %
 % \clearpage
@@ -331,7 +346,7 @@ through XeTeX.
   {
 %    \end{macrocode}
 % \begin{macro}{color,color*}
-% 颜色。设定初始辅助色为白色
+% 颜色。设定主要色彩的初始值为 |default|，辅助色彩的初始值为白色。
 %    \begin{macrocode}
     color       .tl_set:N = \l_@@_color_a_tl,
     color      .initial:n = default,
@@ -341,7 +356,7 @@ through XeTeX.
 % \end{macro}
 %
 % \begin{macro}{department}
-% 院系
+% 院系。设定院系选项初始值为学校官方。
 %    \begin{macrocode}
     department  .tl_set:N = \l_@@_department_tl,
     department .initial:n = nju,
@@ -482,7 +497,10 @@ through XeTeX.
         { \msg_error:nnx { njuvisual } 
             { unsupported-department } { \l_@@_department_tl } }
     }
-    { \tl_set:Nn \l_@@_color_a_tl { #1 }
+%    \end{macrocode}
+% 单独设置颜色时输出官方徽标。
+%    \begin{macrocode}
+      { \tl_set:Nn \l_@@_color_a_tl { #1 }
       \@@_tikz_wrapper:nnn { \@@_path_emblem_nju } { #2 } { #3 } }
   \group_end:
 }
@@ -508,7 +526,10 @@ through XeTeX.
       \clist_if_in:NVTF \c_@@_department_name_clist \l_@@_department_tl
         { 
           \@@_set_color:
-          \bool_if:NTF { #1 }
+%    \end{macrocode}
+% 通过是否含有可选星号区分输出中英文名称。
+%    \begin{macrocode}
+                  \bool_if:NTF { #1 }
             { \@@_tikz_wrapper:nnn 
                 { \use:c { @@_path_name_ #2 _en } } { #3 } { #4 } }
             { \@@_tikz_wrapper:nnn 
