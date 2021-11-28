@@ -29,8 +29,6 @@
 %
 % for those people who are interested.
 %
-% -----------------------------------------------------------------------
-%
 %<*internal>
 \iffalse
 %</internal>
@@ -70,8 +68,8 @@ through XeTeX.
 
 \generate{
   \usedir{tex/latex/njuvisual}
-    \file{\jobname.sty} {\from{\jobname.dtx}{visual}
-                         \from{\jobname-curves.dtx}{visual}}
+    \file{\jobname.sty} {\from{\jobname.dtx}{package}
+                         \from{\jobname-curves.dtx}{package}}
 %</install>
 %<*internal>
   \usedir{source/latex/njuvisual}
@@ -105,12 +103,12 @@ through XeTeX.
 \fi
 %</internal>
 %
-%<visual>\NeedsTeXFormat{LaTeX2e}
-%<visual>\RequirePackage{expl3}
-%<!driver>\GetIdInfo  $Id: njuvisual.dtx 0.1.2 2021-11-28 11:00:00 +0800  NJU LUG <nju.lug@yaoge123.cn> $
-%<visual>  { LaTeX3 Package for NJU Visual Identity }
-%<visual>\ProvidesExplPackage{njuvisual}
-%<visual>{\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+%<package>\NeedsTeXFormat{LaTeX2e}
+%<package>\RequirePackage{expl3}
+%<!driver>\GetIdInfo  $Id: njuvisual.dtx 0.1.3 2021-11-28 16:30:00 +0800  NJU LUG <nju.lug@yaoge123.cn> $
+%<package>  { LaTeX3 Package for NJU Visual Identity }
+%<package>\ProvidesExplPackage{njuvisual}
+%<package>{\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
 %
 %<*driver>
 \documentclass{ctxdoc}
@@ -126,13 +124,14 @@ through XeTeX.
 %
 % \fi
 %
-% \title{\color{njuviolet}{The \pkg{njuvisual} package\\ 南京大学视觉形象规范化标准}}
+% \title{\color{njuviolet}{^^A
+% The \pkg{njuvisual} package \\ 南京大学视觉形象规范化标准}}
 %
 % \author{^^A
 % Nanjing University Linux User Group
 % \thanks{E-mail: \href{mailto:nju.lug@yaoge123.cn}{nju.lug@yaoge123.cn}}}
 %
-% \date{v0.1.2 \\ Released 2021-11-28}
+% \date{v0.1.3 \\ Released 2021-11-28}
 %
 % \changes{v0.1}{2021/11/21}{将 \pkg{njuvisual} 分离为独立宏包。}
 % \changes{v0.1}{2021/11/27}{完成文档编写并发布至 CTAN。}
@@ -314,7 +313,7 @@ through XeTeX.
 %
 %    \begin{macrocode}
 %<@@=njuvis>
-%<*visual>
+%<*package>
 %    \end{macrocode}
 %
 % \subsection{载入宏包}
@@ -585,7 +584,7 @@ through XeTeX.
     \@@_tikz_wrapper:nnn { \@@_path_spirit } { #2 } { #3 } 
   \group_end:
 }
-%</visual>
+%</package>
 %    \end{macrocode}
 % \end{macro}
 %
