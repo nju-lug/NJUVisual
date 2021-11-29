@@ -19,6 +19,7 @@
 %           and the derived files njuvisual.ins,
 %                                 njuvisual.sty,
 %                                 njuvisual.pdf,
+%                                 njuvisual-example.tex,
 %                             and README.md.
 %
 % -----------------------------------------------------------------------
@@ -68,8 +69,11 @@ through XeTeX.
 
 \generate{
   \usedir{tex/latex/njuvisual}
-    \file{\jobname.sty} {\from{\jobname.dtx}{package}
-                         \from{\jobname-curves.dtx}{package}}
+    \file{\jobname.sty}           {\from{\jobname.dtx}{package}
+                                   \from{\jobname-curves.dtx}{color}
+                                   \from{\jobname-curves.dtx}{curve}}
+    \file{\jobname-example.tex}   {\from{\jobname.dtx}{example}
+                                   \from{\jobname-curves.dtx}{example}}
 %</install>
 %<*internal>
   \usedir{source/latex/njuvisual}
@@ -105,8 +109,8 @@ through XeTeX.
 %
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\RequirePackage{expl3}
-%<!driver>\GetIdInfo  $Id: njuvisual.dtx 0.1.3 2021-11-28 16:30:00 +0800  NJU LUG <nju.lug@yaoge123.cn> $
-%<package>  { LaTeX3 Package for NJU Visual Identity }
+%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.2.0 2021-11-28 16:30:00 +0800  NJU LUG <nju.lug@yaoge123.cn> $
+%<package> { NJU Visual Identity }
 %<package>\ProvidesExplPackage{njuvisual}
 %<package>{\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
 %
@@ -117,10 +121,10 @@ through XeTeX.
 \backgroundsetup{contents={\njuemblem[white!85!gray]{22cm}{!}},scale=1,angle=0,hshift=-4cm}
 \setlist[1]{labelindent=0.5em}
 \begin{document}
-    \DocInput{njuvisual.dtx}
-    \DocInput{njuvisual-curves.dtx}
-    \PrintChanges
-    \PrintIndex
+  \DocInput{njuvisual.dtx}
+  \DocInput{njuvisual-curves.dtx}
+  \PrintChanges
+  \PrintIndex
 \end{document}
 %</driver>
 %
@@ -133,7 +137,7 @@ through XeTeX.
 % Nanjing University Linux User Group
 % \thanks{E-mail: \href{mailto:nju.lug@yaoge123.cn}{nju.lug@yaoge123.cn}}}
 %
-% \date{v0.1.3 \\ Released 2021-11-28}
+% \date{v0.2.0 \\ Released 2021-11-28}
 %
 % \changes{v0.1}{2021/11/21}{将 \pkg{njuvisual} 分离为独立宏包。}
 % \changes{v0.1}{2021/11/27}{完成文档编写并发布至 CTAN。}
@@ -560,7 +564,7 @@ through XeTeX.
 %   \item 高度
 % \end{arguments}
 %    \begin{macrocode}
-\NewDocumentCommand \njumotto  { o m m }
+\NewDocumentCommand \njumotto  { O {black} m m }
 { 
   \group_begin:
     \tl_set:Nn \l_@@_color_a_tl { #1 }
@@ -579,7 +583,7 @@ through XeTeX.
 %   \item 高度
 % \end{arguments}
 %    \begin{macrocode}
-\NewDocumentCommand \njuspirit { o m m }
+\NewDocumentCommand \njuspirit { O {black} m m }
 { 
   \group_begin:
     \tl_set:Nn \l_@@_color_a_tl { #1 }
@@ -589,4 +593,24 @@ through XeTeX.
 %</package>
 %    \end{macrocode}
 % \end{macro}
+%
+% \subsection{生成文件}
+% \changes{v0.2}{2021/11/29}{导出外部图片。}
+%
+% 以下文件用于生成各图案。
+% 需要在编译命令中加入 |--shell-escape| 参数。
+% \DoNotIndex{\FIG}
+%    \begin{macrocode}
+%<*example>
+\documentclass{article}
+\usepackage{njuvisual}
+%    \end{macrocode}
+% 使用 \pkg{tikz} 库的外置化功能，每个图标仅需绘制一次，减轻编译负担。
+%    \begin{macrocode}
+\usetikzlibrary{backgrounds,external}
+\tikzexternalize[prefix=nju-]
+\let\FIG=\tikzsetnextfilename
+%</example>
+%    \end{macrocode}
+% 具体添加代码位于曲线内部
 %

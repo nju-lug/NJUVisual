@@ -26,6 +26,10 @@
 %
 % 本部分定义用于绘图的 \pkg{tikz} 路径。由于路径本身长达数千行，故在此文档中隐去，仅保留介绍。有兴趣的同学可以自行查阅 \file{njuvisual-curves.dtx}。
 %
+% example 文件开始。
+%    \begin{macrocode}
+%<example>\begin{document}
+%    \end{macrocode}
 % \subsubsection{南京大学}
 % \changes{v0.1}{2021/11/21}{从既有项目中继承南京大学标准色及徽标。}
 %
@@ -34,16 +38,21 @@
 % \begin{macro}{njuviolet,njumagenta,njublue,njuyellow}
 % 定义南京大学视觉形象规范化标准中给定的四种标准色：紫色、洋红、蓝色、黄色。
 %    \begin{macrocode}
+%<*color>
 \definecolor { njuviolet  } { cmyk } { 0.50, 1   , 0   , 0.40 }
 \definecolor { njumagenta } { cmyk } { 0.05, 1   , 0.55, 0    }
 \definecolor { njublue    } { cmyk } { 0.80, 0.50, 0   , 0    }
 \definecolor { njuyellow  } { cmyk } { 0   , 0.30, 1   , 0    }
+%</color>
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\@@_path_emblem_nju}
 % \changes{v0.1}{2021/11/28}{将校徽填充白色背景色。}
 % 南京大学盾形校徽。
+%    \begin{macrocode}
+%<example>\FIG{emblem}            \njuemblem{!}{!}
+%    \end{macrocode}
 % \end{macro}
 % \end{implementation}
 %
@@ -51,7 +60,7 @@
 %
 % \begin{implementation}
 %    \begin{macrocode}
-%<*package>
+%<*curve>
 \def \@@_path_emblem_nju{
 \begin{scope}[cm={{1.33333,0.0,0.0,-1.33333,(0.0,793.7)}}]
 \begin{scope}[shift={(546.11,343.925)}]
@@ -1251,6 +1260,7 @@
 \end{scope}
 \end{scope}
 }
+%</curve>
 %    \end{macrocode}
 % \end{implementation}
 %
@@ -1259,6 +1269,9 @@
 % \begin{implementation}
 % \begin{macro}{\@@_path_name_nju_cn,\@@_path_name_nju_en}
 % 南京大学中英文校名。
+%    \begin{macrocode}
+%<example>\FIG{name}              \njuname{!}{!}
+%    \end{macrocode}
 % \end{macro}
 % \end{implementation}
 %
@@ -1266,6 +1279,7 @@
 %
 % \begin{implementation}
 %    \begin{macrocode}
+%<*curve>
 \def \@@_path_name_nju_cn{
   \path[fill=\l_@@_color_a_tl,nonzero~rule] (40.0488,-0.0176)
   .. controls (39.2490,-0.0498) and (38.3880,-0.0054) .. (37.4805,0.0996)
@@ -2402,6 +2416,7 @@
   -- (52.5898,7.9004)
   -- cycle;
 }
+%</curve>
 %    \end{macrocode}
 % \end{implementation}
 %
@@ -2410,6 +2425,9 @@
 % \begin{implementation}
 % \begin{macro}{\@@_path_motto}
 % 南京大学中英文校训。在筹备百年校庆过程中，经过广泛征求意见和反复遴选比较，学校决定将“诚朴雄伟，励学敦行”作为南京大学新的校训。
+%    \begin{macrocode}
+%<example>\FIG{motto}             \njumotto{!}{!}
+%    \end{macrocode}
 % \end{macro}
 % \end{implementation}
 %
@@ -2417,6 +2435,7 @@
 %
 % \begin{implementation}
 %    \begin{macrocode}
+%<*curve>
 \def \@@_path_motto{
   \path[fill=\l_@@_color_a_tl,nonzero~rule] (60.0000,0.0000)
   .. controls (58.8800,0.8600) and (59.4102,2.3309) .. (59.1602,3.4609)
@@ -3510,6 +3529,7 @@
   .. controls (17.5455,187.1020) and (17.7523,185.9445) .. (18.3418,186.0957)
   -- cycle;
 }
+%</curve>
 %    \end{macrocode}
 % \end{implementation}
 %
@@ -3518,6 +3538,9 @@
 % \begin{implementation}
 % \begin{macro}{\@@_path_spirit}
 % 南京大学校风。1991年，在广泛征求师生意见和总结南大办学传统的基础上，曲钦岳校长确定将“严谨、求实、勤奋、创新”作为南大校风。
+%    \begin{macrocode}
+%<example>\FIG{spirit}            \njuspirit{!}{!}
+%    \end{macrocode}
 % \end{macro}
 % \end{implementation}
 %
@@ -3525,6 +3548,7 @@
 %
 % \begin{implementation}
 %    \begin{macrocode}
+%<*curve>
 \def \@@_path_spirit{
   \path[fill=\l_@@_color_a_tl,nonzero~rule] (459.6172,0.1621)
   .. controls (458.7334,0.1971) and (458.0702,0.4750) .. (458.2402,1.2500)
@@ -5092,6 +5116,7 @@
   .. controls (172.5188,254.2580) and (173.1103,253.5734) .. (173.7344,253.5137)
   -- cycle;
 }
+%</curve>
 %    \end{macrocode}
 % \end{implementation}
 %
@@ -5104,6 +5129,9 @@
 % \begin{macro}{\@@_path_emblem_dii}
 % \changes{v0.1}{2021/11/27}{添加匡亚明学院徽标。}
 % 匡亚明学院徽标。\href{https://dii.nju.edu.cn/xgxz/list.htm}{下载地址}
+%    \begin{macrocode}
+%<example>\FIG{emblem-dii}        \njuemblem[department=dii]{!}{!}
+%    \end{macrocode}
 % \end{macro}
 % \end{implementation}
 %
@@ -5111,6 +5139,7 @@
 %
 % \begin{implementation}
 %    \begin{macrocode}
+%<*curve>
 \def \@@_path_emblem_dii{
   \path[fill=\l_@@_color_a_tl,nonzero~rule] (-35.1788,100.2988) .. controls
   (-35.4868,100.2805) and (-36.4109,100.2201) .. (-37.2323,100.1644) .. controls
@@ -6875,6 +6904,7 @@
   (-25.1781,-47.4250) -- (-25.1915,-45.3486) -- (-25.7049,-45.3655) .. controls
   (-25.9872,-45.3748) and (-26.4362,-45.3977) .. (-26.7025,-45.4165) -- cycle;
 }
+%</curve>
 %    \end{macrocode}
 % \end{implementation}
 %
@@ -6887,6 +6917,9 @@
 % \begin{macro}{\@@_path_emblem_eng}
 % \changes{v0.1}{2021/11/24}{添加现代工程与应用科学学院徽标。}
 % 现代工程与应用科学学院徽标。\href{https://eng.nju.edu.cn/xybz/list.htm}{下载地址}
+%    \begin{macrocode}
+%<example>\FIG{emblem-eng}        \njuemblem[department=eng]{!}{!}
+%    \end{macrocode}
 % \end{macro}
 % \end{implementation}
 %
@@ -6894,6 +6927,7 @@
 %
 % \begin{implementation}
 %    \begin{macrocode}
+%<*curve>
 \def \@@_path_emblem_eng {
   \begin{scope}[cm={{1.3333,0.0,0.0,-1.3333,(0.0,325.71)}}]
     \begin{scope}[shift={(222.98,59.799)}]
@@ -8707,6 +8741,7 @@
     \end{scope}
   \end{scope}
 }
+%</curve>
 %    \end{macrocode}
 % \end{implementation}
 %
@@ -8719,15 +8754,20 @@
 % \begin{macro}{\c_@@_color_ai_clist,nju-ai-blue,nju-ai-orange}
 % 定义人工智能学院标准色
 %    \begin{macrocode}
+%<*color>
 \clist_const:Nn \c_@@_color_ai_clist { nju-ai-blue, nju-ai-orange }
 \definecolor { nju-ai-blue   } { cmyk } { 0.75, 0.65, 0   , 0    }
 \definecolor { nju-ai-orange } { cmyk } { 0   , 0.75, 1   , 0    }
+%</color>
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\@@_path_emblem_ai}
-  % \changes{v0.1}{2021/11/27}{添加人工智能学院标准色与徽标。}
+% \changes{v0.1}{2021/11/27}{添加人工智能学院标准色与徽标。}
 % 人工智能学院徽标。由同学提供描图版本。
+%    \begin{macrocode}
+%<example>\FIG{emblem-ai}         \njuemblem[department=ai]{!}{!}
+%    \end{macrocode}
 % \end{macro}
 % \end{implementation}
 %
@@ -8735,6 +8775,7 @@
 %
 % \begin{implementation}
 %    \begin{macrocode}
+%<*curve>
 \def \@@_path_emblem_ai{
   \begin{scope}[cm={{1.33333,0.0,0.0,-1.33333,(0.0,1122.52)}}]
     \begin{scope}[shift={(211.69,617.343)}]
@@ -8797,6 +8838,7 @@
     \end{scope}
     \end{scope}
 }
+%</curve>
 %    \end{macrocode}
 % \end{implementation}
 %
@@ -8809,15 +8851,20 @@
 % \begin{macro}{\c_@@_color_cs_clist,nju-cs-blue,nju-cs-green}
 % 定义计算机科学与技术系标准色
 %    \begin{macrocode}
+%<*color>
 \clist_const:Nn \c_@@_color_cs_clist { nju-cs-blue, nju-cs-green }
 \definecolor { nju-cs-blue  } { cmyk } { 0.89, 0.66, 0.13, 0    }
 \definecolor { nju-cs-green } { cmyk } { 0.60, 0.23, 1   , 0    }
+%</color>
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\@@_path_emblem_cs}
 % \changes{v0.1}{2021/11/27}{添加计算机科学与技术系标准色与徽标。}
 % 计算机科学与技术系徽标。
+%    \begin{macrocode}
+%<example>\FIG{emblem-cs}         \njuemblem[department=cs]{!}{!}
+%    \end{macrocode}
 % \end{macro}
 % \end{implementation}
 %
@@ -8825,6 +8872,7 @@
 %
 % \begin{implementation}
 %    \begin{macrocode}
+%<*curve>
 \def \@@_path_emblem_cs{
   \begin{scope}[cm={{1.33333,0.0,0.0,-1.33333,(0.0,1435.64)}}]
     \begin{scope}[shift={(518.985,748.626)}]
@@ -8982,6 +9030,7 @@
     \end{scope}
     \end{scope}
 }
+%</curve>
 %    \end{macrocode}
 % \end{implementation}
 %
@@ -8994,12 +9043,17 @@
 % \begin{macro}{\@@_path_emblem_software}
 % \changes{v0.1}{2021/11/28}{添加软件学院徽标。}
 % 软件学院学院徽标。
+%    \begin{macrocode}
+%<example>\FIG{emblem-software}   \njuemblem[department=software]{!}{!}
+%    \end{macrocode}
 % \end{macro}
 % \end{implementation}
 %
 % \DisableImplementation
 %
 % \begin{implementation}
+%    \begin{macrocode}
+%<*curve>
 \def \@@_path_emblem_software{
 \begin{scope}[cm={{1.33333,0.0,0.0,-1.33333,(0.0,1333.33)}}]
 \begin{scope}[shift={(859.766,486.147)}]
@@ -9915,7 +9969,16 @@
 \end{scope}
 \end{scope}
 }
-%</package>
+%</curve>
+%    \end{macrocode}
+% \end{implementation}
+%
+% \EnableImplementation
+%
+% \begin{implementation}
+% example 文件收尾。
+%    \begin{macrocode}
+%<example>\end{document}
 %    \end{macrocode}
 % \end{implementation}
 %
