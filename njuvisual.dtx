@@ -109,7 +109,7 @@ through XeTeX.
 %
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\RequirePackage{expl3}
-%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.2.0 2021-11-28 16:30:00 +0800  NJU LUG <nju.lug@yaoge123.cn> $
+%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.2.0 2021-11-29 19:00:00 +0800  NJU LUG <nju.lug@yaoge123.cn> $
 %<package> { NJU Visual Identity }
 %<package>\ProvidesExplPackage{njuvisual}
 %<package>{\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -137,7 +137,7 @@ through XeTeX.
 % Nanjing University Linux User Group
 % \thanks{E-mail: \href{mailto:nju.lug@yaoge123.cn}{nju.lug@yaoge123.cn}}}
 %
-% \date{v0.2.0 \\ Released 2021-11-28}
+% \date{v0.2.0 \\ Released 2021-11-29}
 %
 % \changes{v0.1}{2021/11/21}{将 \pkg{njuvisual} 分离为独立宏包。}
 % \changes{v0.1}{2021/11/27}{完成文档编写并发布至 CTAN。}
@@ -261,7 +261,7 @@ through XeTeX.
 %   院系名称。
 % \end{function}
 %
-% 为保证无歧义，|department| 选项使用的名称来自于院系官网域名。如化学化工学院域名为\url{https://chem.nju.edu.cn/}，其选项名称即为 |chem|。
+% 为保证无歧义，|department| 选项使用的名称来自于院系官网域名。如化学化工学院域名为 \url{https://chem.nju.edu.cn/}，其选项名称即为 |chem|。
 %
 % 目前的支持情况如表~\ref{tab:supported-departments-list}所示。对于不支持的院系，本宏包会抛出异常。
 % \begingroup
@@ -595,7 +595,7 @@ through XeTeX.
 % \end{macro}
 %
 % \subsection{生成文件}
-% \changes{v0.2}{2021/11/29}{导出外部图片。}
+% \changes{v0.2}{2021/11/29}{提供导出外部图片的方法。}
 %
 % 以下文件用于生成各图案。
 % 需要在编译命令中加入 |--shell-escape| 参数。
@@ -605,12 +605,11 @@ through XeTeX.
 \documentclass{article}
 \usepackage{njuvisual}
 %    \end{macrocode}
-% 使用 \pkg{tikz} 库的外置化功能，每个图标仅需绘制一次，减轻编译负担。
+% 使用 \pkg{tikz} 库的外置化功能生成独立的 PDF 格式矢量图。每个图标仅需绘制一次，可以减轻编译负担。
 %    \begin{macrocode}
 \usetikzlibrary{backgrounds,external}
 \tikzexternalize[prefix=nju-]
 \let\FIG=\tikzsetnextfilename
 %</example>
 %    \end{macrocode}
-% 具体添加代码位于曲线内部
 %

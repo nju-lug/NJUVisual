@@ -18,6 +18,12 @@
 *.tex
 *.ins
 
+## Folders
+build/
+
+## l3build generated file
+*.zip
+
 ## Intermediate documents:
 *.hd
 *.dvi
