@@ -109,7 +109,7 @@ through XeTeX.
 %
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\RequirePackage{expl3}
-%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.2.0 2021-11-29 19:00:00 +0800  NJU LUG <nju.lug@yaoge123.cn> $
+%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.2.1 2021-12-04 16:30:00 +0800  NJU LUG <nju.lug@yaoge123.cn> $
 %<package> { NJU Visual Identity }
 %<package>\ProvidesExplPackage{njuvisual}
 %<package>{\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -137,7 +137,7 @@ through XeTeX.
 % Nanjing University Linux User Group
 % \thanks{E-mail: \href{mailto:nju.lug@yaoge123.cn}{nju.lug@yaoge123.cn}}}
 %
-% \date{v0.2.0 \\ Released 2021-11-29}
+% \date{v0.2.1 \\ Released 2021-12-04}
 %
 % \changes{v0.1}{2021/11/21}{将 \pkg{njuvisual} 分离为独立宏包。}
 % \changes{v0.1}{2021/11/27}{完成文档编写并发布至 CTAN。}
@@ -293,14 +293,12 @@ through XeTeX.
 %   \njuemblem[department=cs,color=blue]{!}{3cm} % 纯蓝色计科徽标
 % \end{ctexexam}
 %
-%
 % \begin{function}[added=2021-09-24]{\njumotto}
 %   \begin{syntax}
 %     \tn{njumotto}\oarg{颜色}\Arg{宽度}\Arg{高度}
 %   \end{syntax}
 % 生成指定颜色和大小的南京大学校训。
 % \end{function}
-%
 %
 % \begin{function}[added=2021-09-24]{\njuspirit}
 %   \begin{syntax}
@@ -309,9 +307,30 @@ through XeTeX.
 % 生成指定颜色和大小的南京大学校风。
 % \end{function}
 %
-% \end{documentation}
+% \subsection{导出图像}
+% \changes{v0.2}{2021/12/04}{提供导出 PNG 图像的方法。}
 %
-% \EnableImplementation
+% 为了便于存储独立的图像，本宏包内置了 \file{njuvisual-example.tex}，使用 \pkg{tikz} 的外置化功能生成独立的图片文件。编译此文件时需使用 |--shell-escape| 参数。
+%
+% 对于大部分日常用途，PDF 格式的矢量图并没有受到良好的支持。在此提供将上述独立图像通过 inkscape 程序进行转换的方法。关于命令行使用方法的请参考\href{https://inkscape.org/doc/inkscape-man.html}{官方手册}。
+% \begin{description}
+%   \item[|--export-type=|] 指定输出格式，|"png"| 即可，不支持 JPEG 格式。
+%   \item[|-w|] 指定输出宽度。
+%   \item[|-h|] 指定输出高度。
+% \end{description}
+%
+% 以下为在 Linux 系统中将当前目录下全部 PDF 文件转化为高度为1000像素的 PNG 图片的命令示例。
+% \begin{ctexexam}
+%   inkscape --export-type="png" nju-*.pdf -h 1000
+% \end{ctexexam}
+%
+% 以下为在 Windows 系统的 Powershell 中将南大校名转化为 PNG 图片的命令示例。
+% \begin{ctexexam}
+%   & 'C:\Program Files (x86)\Inkscape\bin\inkscape.exe' --export-type="png" nju-name.pdf
+% \end{ctexexam}
+%
+% \end{documentation}
+% 
 %
 % \begin{implementation}
 %

@@ -32,8 +32,10 @@ build/
 
 # these rules might exclude image files for figures etc.
 # *.ps
-# *.eps
+*.eps
 *.pdf
+*.png
+*.svg
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
