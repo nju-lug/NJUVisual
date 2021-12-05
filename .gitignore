@@ -14,9 +14,10 @@
 
 ## DocStrip generated file
 *.cls
-*.sty
-*.tex
 *.ins
+*.sty
+njuvisual-example.tex
+
 
 ## Folders
 build/
