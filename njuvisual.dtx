@@ -358,10 +358,10 @@ through XeTeX.
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\l_@@_department_tl}
+% \begin{macro}{\l_@@_dept_tl}
 % 存储院系
 %    \begin{macrocode}
-\tl_new:N \l_@@_department_tl
+\tl_new:N \l_@@_dept_tl
 %    \end{macrocode}
 % \end{macro}
 %
@@ -383,49 +383,49 @@ through XeTeX.
 % \begin{macro}{department}
 % 院系。设定院系选项初始值为学校官方。
 %    \begin{macrocode}
-    department  .tl_set:N = \l_@@_department_tl,
+    department  .tl_set:N = \l_@@_dept_tl,
     department .initial:n = nju,
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{variable}{\c_@@_department_all_clist}
+% \begin{variable}{\c_@@_dept_all_clist}
 % 定义南京大学全体院系名单。
 %    \begin{macrocode}
-\clist_const:Nn \c_@@_department_all_clist
-{ nju, dii, eng, chin, history, philo, jc, law, nubs, sfs, im, sociology, 
-  math, physics, astronomy, chem, cs, software, ai, ese, hjxy, sgos,
-  as, life, med, sme, hwxy, arch, marxism, art, edu }
+\clist_const:Nn \c_@@_dept_all_clist
+  { nju, dii, eng, chin, history, philo, jc, law, nubs, sfs, im, sociology, 
+    math, physics, astronomy, chem, cs, software, ai, ese, hjxy, sgos,
+    as, life, med, sme, hwxy, arch, marxism, art, edu }
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\c_@@_department_emblem_clist}
+% \begin{variable}{\c_@@_dept_emblem_clist}
 % 定义受图标支持的南京大学院系名单。
 %    \begin{macrocode}
-\clist_const:Nn \c_@@_department_emblem_clist { nju, dii, eng, cs, ai, software }
+\clist_const:Nn \c_@@_dept_emblem_clist { nju, dii, eng, cs, ai, software }
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\c_@@_department_name_clist}
+% \begin{variable}{\c_@@_dept_name_clist}
 % 定义受名称支持的南京大学院系名单。
 %    \begin{macrocode}
-\clist_const:Nn \c_@@_department_name_clist   { nju }
+\clist_const:Nn \c_@@_dept_name_clist   { nju }
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\c_@@_department_color_clist}
+% \begin{variable}{\c_@@_dept_color_clist}
 % 定义受色彩支持的南京大学院系名单。
 %    \begin{macrocode}
-\clist_const:Nn \c_@@_department_color_clist  { cs, ai }
+\clist_const:Nn \c_@@_dept_color_clist  { cs, ai }
 %    \end{macrocode}
 % \end{variable}
 %
 % 定义对不支持的院系的报错信息。
 %    \begin{macrocode}
 \msg_new:nnn { njuvisual } { unsupported-department }
-{ "#1"~ is~ not~ an~ valid~ option~ \\\\
-  Please~ refer~ to~ the~ package~ documentation~  for~ supported~ 
-  departments~ and~ check~ your~ spelling. \\ }
+  { "#1"~ is~ not~ an~ valid~ option~ \\\\
+    Please~ refer~ to~ the~ package~ documentation~  for~ supported~ 
+    departments~ and~ check~ your~ spelling. \\ }
 %    \end{macrocode}
 %
 % \subsection{内部命令}
@@ -441,14 +441,14 @@ through XeTeX.
 %    \end{macrocode}
 % 如果没有单独设定，则使用默认颜色。
 %    \begin{macrocode}
-        \clist_if_in:NVTF \c_@@_department_color_clist \l_@@_department_tl
+        \clist_if_in:NVTF \c_@@_dept_color_clist \l_@@_dept_tl
           { \tl_set:Nn \l_@@_color_a_tl 
-              { \clist_item:cn { c_@@_color_ \l_@@_department_tl _clist } { 1 } }
+              { \clist_item:cn { c_@@_color_ \l_@@_dept_tl _clist } { 1 } }
             \tl_set:Nn \l_@@_color_b_tl 
-              { \clist_item:cn { c_@@_color_ \l_@@_department_tl _clist } { 2 } } }
+              { \clist_item:cn { c_@@_color_ \l_@@_dept_tl _clist } { 2 } } }
           { \tl_set:Nn \l_@@_color_a_tl { njuviolet } }
       } 
-      { \clist_if_in:NVT \c_@@_department_color_clist \l_@@_department_tl
+      { \clist_if_in:NVT \c_@@_dept_color_clist \l_@@_dept_tl
 %    \end{macrocode}
 % 将双色图标设定为纯色。
 %    \begin{macrocode}
@@ -467,12 +467,12 @@ through XeTeX.
 % 封装 resizebox 和 tikzpicture 环境，减少重复。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_tikz_wrapper:nnn #1#2#3
-{
-  \resizebox { #2 } { #3 } {
-    \begin{tikzpicture}[y=0.80pt, x=0.80pt, yscale=-1,
-        xscale=1, inner~sep=0pt, outer~sep=0pt] #1
-    \end{tikzpicture} }
-}
+  {
+    \resizebox { #2 } { #3 } {
+      \begin{tikzpicture}[y=0.80pt, x=0.80pt, yscale=-1,
+          xscale=1, inner~sep=0pt, outer~sep=0pt] #1
+      \end{tikzpicture} }
+  }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -481,13 +481,6 @@ through XeTeX.
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_if_key_value_list:nTF #1
   { \tl_if_in:nnTF {#1} {=} }
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\@@_colon}
-% 定义类别为 other 的冒号，用于在 Expl3 中表示路径
-%    \begin{macrocode}
-\def \@@_colon { \char_generate:nn { 58 } { 12 } }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -504,31 +497,31 @@ through XeTeX.
 % \end{arguments}
 %    \begin{macrocode}
 \NewDocumentCommand \njuemblem { O { njuviolet } m m }
-{
-  \group_begin:
+  {
+    \group_begin:
 %    \end{macrocode}
-% 根据参数是否含有 |=| 来判断该参数是段落数还是选项列表。
+% 根据参数是否含有 |=| 来判断该参数是颜色还是选项列表。
 %    \begin{macrocode}
-    \@@_if_key_value_list:nTF { #1 }
-    {
-      \keys_set:nn { njuvisual } { #1 }
+      \@@_if_key_value_list:nTF { #1 }
+      {
+        \keys_set:nn { njuvisual } { #1 }
 %    \end{macrocode}
 % 检查是否受支持。
 %    \begin{macrocode}
-          \clist_if_in:NVTF \c_@@_department_emblem_clist \l_@@_department_tl
-        { \@@_set_color:
-          \@@_tikz_wrapper:nnn 
-            { \use:c { @@_path_emblem_ \l_@@_department_tl } } { #2 } { #3 } }
-        { \msg_error:nnx { njuvisual } 
-            { unsupported-department } { \l_@@_department_tl } }
-    }
+            \clist_if_in:NVTF \c_@@_dept_emblem_clist \l_@@_dept_tl
+          { \@@_set_color:
+            \@@_tikz_wrapper:nnn 
+              { \use:c { @@_path_emblem_ \l_@@_dept_tl } } { #2 } { #3 } }
+          { \msg_error:nnx { njuvisual } 
+              { unsupported-department } { \l_@@_dept_tl } }
+      }
 %    \end{macrocode}
 % 单独设置颜色时输出官方徽标。
 %    \begin{macrocode}
-      { \tl_set:Nn \l_@@_color_a_tl { #1 }
-      \@@_tikz_wrapper:nnn { \@@_path_emblem_nju } { #2 } { #3 } }
-  \group_end:
-}
+        { \tl_set:Nn \l_@@_color_a_tl { #1 }
+        \@@_tikz_wrapper:nnn { \@@_path_emblem_nju } { #2 } { #3 } }
+    \group_end:
+  }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -543,34 +536,34 @@ through XeTeX.
 % \end{arguments}
 %    \begin{macrocode}
 \NewDocumentCommand \njuname { t* O { njuviolet } m m }
-{
-  \group_begin:
-    \@@_if_key_value_list:nTF { #2 }
-    {
-      \keys_set:nn { njuvisual } { #2 }
-      \clist_if_in:NVTF \c_@@_department_name_clist \l_@@_department_tl
-        { 
-          \@@_set_color:
+  {
+    \group_begin:
+      \@@_if_key_value_list:nTF { #2 }
+      {
+        \keys_set:nn { njuvisual } { #2 }
+        \clist_if_in:NVTF \c_@@_dept_name_clist \l_@@_dept_tl
+          { 
+            \@@_set_color:
 %    \end{macrocode}
 % 通过是否含有可选星号区分输出中英文名称。
 %    \begin{macrocode}
-                  \bool_if:NTF { #1 }
-            { \@@_tikz_wrapper:nnn 
-                { \use:c { @@_path_name_ #2 _en } } { #3 } { #4 } }
-            { \@@_tikz_wrapper:nnn 
-                { \use:c { @@_path_name_ #2 _cn } } { #3 } { #4 } }
-        }
-        { \msg_error:nnx { njuvisual } 
-            { unsupported-department } { \l_@@_department_tl } }
-    }
-    {
-      \tl_set:Nn \l_@@_color_a_tl { #2 }
-      \bool_if:NTF { #1 }
-        { \@@_tikz_wrapper:nnn { \@@_path_name_nju_en } { #3 } { #4 } }
-        { \@@_tikz_wrapper:nnn { \@@_path_name_nju_cn } { #3 } { #4 } }
-    }
-  \group_end:
-}
+                    \bool_if:NTF { #1 }
+              { \@@_tikz_wrapper:nnn 
+                  { \use:c { @@_path_name_ #2 _en } } { #3 } { #4 } }
+              { \@@_tikz_wrapper:nnn 
+                  { \use:c { @@_path_name_ #2 _cn } } { #3 } { #4 } }
+          }
+          { \msg_error:nnx { njuvisual } 
+              { unsupported-department } { \l_@@_dept_tl } }
+      }
+      {
+        \tl_set:Nn \l_@@_color_a_tl { #2 }
+        \bool_if:NTF { #1 }
+          { \@@_tikz_wrapper:nnn { \@@_path_name_nju_en } { #3 } { #4 } }
+          { \@@_tikz_wrapper:nnn { \@@_path_name_nju_cn } { #3 } { #4 } }
+      }
+    \group_end:
+  }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -584,12 +577,12 @@ through XeTeX.
 % \end{arguments}
 %    \begin{macrocode}
 \NewDocumentCommand \njumotto  { O {black} m m }
-{ 
-  \group_begin:
-    \tl_set:Nn \l_@@_color_a_tl { #1 }
-    \@@_tikz_wrapper:nnn { \@@_path_motto } { #2 } { #3 }
-  \group_end:
-}
+  { 
+    \group_begin:
+      \tl_set:Nn \l_@@_color_a_tl { #1 }
+      \@@_tikz_wrapper:nnn { \@@_path_motto } { #2 } { #3 }
+    \group_end:
+  }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -603,12 +596,12 @@ through XeTeX.
 % \end{arguments}
 %    \begin{macrocode}
 \NewDocumentCommand \njuspirit { O {black} m m }
-{ 
-  \group_begin:
-    \tl_set:Nn \l_@@_color_a_tl { #1 }
-    \@@_tikz_wrapper:nnn { \@@_path_spirit } { #2 } { #3 } 
-  \group_end:
-}
+  { 
+    \group_begin:
+      \tl_set:Nn \l_@@_color_a_tl { #1 }
+      \@@_tikz_wrapper:nnn { \@@_path_spirit } { #2 } { #3 } 
+    \group_end:
+  }
 %</package>
 %    \end{macrocode}
 % \end{macro}
