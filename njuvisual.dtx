@@ -196,16 +196,18 @@ through XeTeX.
 %   \centering\small
 %   \begin{tabular}{cccc}
 %     \toprule
-%       名称                   & 颜色名称        & CMYK 数值                & 示例 \\
+%       名称                     & 颜色名称          & CMYK 数值                & 示例 \\
 %     \midrule
-%       \MN{南京大学}          & |njuviolet|     & $0.50, 1   , 0   , 0.40$ & \B{njuviolet} \\
-%                              & |njumagenta|    & $0.05, 1   , 0.55, 0$    & \B{njumagenta} \\
-%                              & |njublue|       & $0.80, 0.50, 0   , 0$    & \B{njublue} \\
-%                              & |njuyellow|     & $0   , 0.30, 1   , 0$    & \B{njuyellow} \\
-%       \M{人工智能学院}       & |nju-ai-blue|   & $0.75, 0.65, 0   , 0$    & \B{nju-ai-blue} \\
-%                              & |nju-ai-orange| & $0   , 0.75, 1   , 0$    & \B{nju-ai-orange} \\
-%       \M{计算机科学与技术系} & |nju-cs-blue|   & $0.89, 0.66, 0.13, 0$    & \B{nju-cs-blue} \\
-%                              & |nju-cs-green|  & $0.60, 0.23, 1   , 0$    & \B{nju-cs-green} \\
+%       \MN{南京大学}            & |njuviolet|     & $0.50, 1   , 0   , 0.40$ & \B{njuviolet} \\
+%                               & |njumagenta|    & $0.05, 1   , 0.55, 0$    & \B{njumagenta} \\
+%                               & |njublue|       & $0.80, 0.50, 0   , 0$    & \B{njublue} \\
+%                               & |njuyellow|     & $0   , 0.30, 1   , 0$    & \B{njuyellow} \\
+%       \M{人工智能学院}          & |nju-ai-blue|   & $0.75, 0.65, 0   , 0$    & \B{nju-ai-blue} \\
+%                               & |nju-ai-orange| & $0   , 0.75, 1   , 0$    & \B{nju-ai-orange} \\
+%       \M{计算机科学与技术系}     & |nju-cs-blue|   & $0.89, 0.66, 0.13, 0$    & \B{nju-cs-blue} \\
+%                               & |nju-cs-green|  & $0.60, 0.23, 1   , 0$    & \B{nju-cs-green} \\
+%       \M{化学化工学院}          & |nju-chem-red|  & $0.28, 0.95, 0.84, 0$    & \B{nju-chem-red} \\
+%                               & |nju-chem-gold| & $0.40, 0.42, 0.60, 0$    & \B{nju-chem-gold} \\
 %     \bottomrule
 %   \end{tabular}
 % \end{table}
@@ -402,7 +404,7 @@ through XeTeX.
 % \begin{variable}{\c_@@_dept_emblem_clist}
 % 定义受图标支持的南京大学院系名单。
 %    \begin{macrocode}
-\clist_const:Nn \c_@@_dept_emblem_clist { nju, dii, eng, cs, ai, software }
+\clist_const:Nn \c_@@_dept_emblem_clist { nju, dii, eng, cs, ai, software, chem }
 %    \end{macrocode}
 % \end{variable}
 %
@@ -416,7 +418,7 @@ through XeTeX.
 % \begin{variable}{\c_@@_dept_color_clist}
 % 定义受色彩支持的南京大学院系名单。
 %    \begin{macrocode}
-\clist_const:Nn \c_@@_dept_color_clist  { cs, ai }
+\clist_const:Nn \c_@@_dept_color_clist  { cs, ai, chem }
 %    \end{macrocode}
 % \end{variable}
 %
@@ -607,7 +609,7 @@ through XeTeX.
 % \end{macro}
 %
 % \subsection{生成文件}
-% \changes{v0.2}{2021/11/29}{提供导出外部图片的方法。}
+% \changes{v0.2}{2021/11/29}{提供导出 PDF 图像的方法。}
 %
 % 以下文件用于生成各图案。
 % 需要在编译命令中加入 |--shell-escape| 参数。
