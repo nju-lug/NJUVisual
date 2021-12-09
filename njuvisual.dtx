@@ -210,17 +210,20 @@ through XeTeX.
 %
 % \pkg{njuvisual} 用于收录南京大学及其各院系制定的标准色彩及图标，并提供简洁的绘制指令。
 %
-% 本宏包衍生自 \pkg{njuthesis}，依赖 \hologo{LaTeX3} 项目
+% 本宏包衍生自 \cls{njuthesis}，依赖 \hologo{LaTeX3} 项目
 % 中的 \pkg{expl3}、\pkg{xparse} 和 \pkg{l3keys2e} 宏包。
-% 特别感谢 \pkg{fduthesis} 与 \pkg{zhlipsum} 提供的处理思路。
+% 特别感谢 \cls{fduthesis} 与 \pkg{zhlipsum} 提供的处理思路。
 %
 % 欲使用本宏包，在终端键入下述 \pkg{tlmgr} 的命令（很可能需要管理员权限）：
 % \begin{shellexample}[morekeywords={tlmgr,install}]
 %   tlmgr install njuvisual
 % \end{shellexample}
-% 即可完成安装
+% 即可完成安装。
+%
 %
 % \section{使用方法}
+%
+% 本节提供命令的使用方法。关于绘制的内容，请参阅后文的 \ref{subsec:colors-and-curves}。
 %
 % \subsection{标准色彩}
 %
@@ -258,13 +261,14 @@ through XeTeX.
 % \end{table}
 % \endgroup
 %
+%
 % \subsection{标准图标}
 %
 % \begin{function}[added=2021-09-24,updated=2021-11-27]{\njuemblem}
 %   \begin{syntax}
 %     \tn{njuemblem}\oarg{选项}\Arg{宽度}\Arg{高度}
 %   \end{syntax}
-%   生成徽标，默认生成校徽。参数 \meta{选项} 是可选的。注意各
+%   生成徽标，默认生成校徽。参数 \oarg{选项} 是可选的，详见下文说明。注意各
 %   参数之间不可以有空格。
 % \end{function}
 %
@@ -286,7 +290,7 @@ through XeTeX.
 %
 % \begin{function}[added=2021-11-27]{color,color*}
 %   \begin{syntax}
-%     color = \meta{主要颜色}
+%     color  = \meta{主要颜色}
 %     color* = \meta{辅助颜色}
 %   \end{syntax}
 %   定制图标颜色。
@@ -330,7 +334,7 @@ through XeTeX.
 % \end{table}
 % \endgroup
 %
-% 举例如下：
+% 对这两个命令的举例如下：
 % \begin{latexexample}[moretexcs={\njuemblem,\njuname}]
 %   \njuemblem{!}{3cm}                           % 生成指定大小的紫色南大校徽
 %   \njuname{4cm}{!}                             % 生成指定大小的紫色南大中文校名
@@ -353,6 +357,7 @@ through XeTeX.
 %   \end{syntax}
 % 生成指定颜色和大小的南京大学校风。
 % \end{function}
+%
 %
 % \subsection{导出图像}
 % \changes{v0.2}{2021/12/04}{提供导出 PNG 图像的方法。}
