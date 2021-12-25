@@ -5,17 +5,13 @@
 
 module       = "njuvisual"
 
-checkengines = {"xetex", "luatex"}
-checkopts    = "-interaction=batchmode"
-
+sourcefiles  = {"*.dtx"}
+installfiles = {"*.sty"}
 textfiles    = {"LICENSE", "*.md"}
 ctanreadme   = "README-CTAN.md"
 
-sourcefiles  = {"*.dtx"}
-installfiles = {"*.sty"}
+unpackexe    = "xetex"
+unpackfiles  = {"njuvisual.dtx"}
 
 typesetexe   = "xelatex"
 typesetfiles = {"njuvisual.dtx"}
-
-unpackexe    = "xetex"
-unpackfiles  = {"njuvisual.dtx"}

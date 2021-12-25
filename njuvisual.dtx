@@ -74,12 +74,10 @@ through XeTeX.
                                    \from{\jobname-curves.dtx}{curve}}
     \file{\jobname-example.tex}   {\from{\jobname.dtx}{example}
                                    \from{\jobname-curves.dtx}{example}}
-%</install>
 %<*internal>
   \usedir{source/latex/njuvisual}
     \file{\jobname.ins} {\from{\jobname.dtx}{install}}
 %</internal>
-%<*install>
 }
 
 \obeyspaces
@@ -116,11 +114,20 @@ through XeTeX.
 %
 %<*driver>
 \documentclass{ctxdoc}
-\usepackage{listings,multirow,njuvisual,rotating}
+\usepackage{listings,njuvisual,tabularray}
 \usepackage[firstpage=true]{background}
 \backgroundsetup{contents={\njuemblem[white!85!gray]{22cm}{!}},scale=1,angle=0,hshift=-4cm}
+\DeclareGraphicsExtensions{.pdf}
+\UseTblrLibrary{booktabs,siunitx,diagbox}
+\DefTblrTemplate{caption-tag}{default}{表\hspace{0.25em}\thetable}
+\SetTblrStyle{caption-tag}{font=\bfseries}
+\DefTblrTemplate{caption-sep}{default}{\quad}
 \setlist[1]{labelindent=0.5em}
-\hypersetup{pdftitle={The njuvisual package – Display logos related to Nanjing University}}
+\hypersetup{pdftitle={The njuvisual package - Display logos related to Nanjing University}}
+\hypersetup{%
+  citecolor = njublue,
+  linkcolor = njuviolet,
+  urlcolor  = njumagenta}
 \lstdefinestyle{style@base}
   {
     basewidth       = 0.5 em,
@@ -194,8 +201,8 @@ through XeTeX.
 %
 % \def\abstractname{Abstract}
 % \begin{abstract}
-% The \pkg{njuvisual} package collects standard colors and logos related to 
-% Nanjing University, saves the vector logos as \pkg{tikz} pictures and 
+% The \pkg{njuvisual} package collects standard colors and logos related to
+% Nanjing University, saves the vector logos as \pkg{tikz} pictures and
 % provides a user-friendly interface to display them in documents and beamers.
 % \end{abstract}
 %
@@ -237,27 +244,29 @@ through XeTeX.
 % 本宏包定义的所有标准色彩见表~\ref{tab:pre-defined-colors}。
 % \begingroup
 % \def\B#1{\color{#1}$\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare$}
-% \def\M#1{\multirow{2}*{#1}}
-% \def\MN#1{\multirow{4}*{#1}}
 % \begin{table}[htb]
 %   \caption{预定义标准色} \label{tab:pre-defined-colors}
-%   \centering\small
-%   \begin{tabular}{cccc}
+%   \centering
+%   \begin{tblr}[expand=\B]{cccc}
 %     \toprule
-%       名称                     & 颜色名称        & CMYK 数值                & 示例                \\
+%       名称 & 颜色名称     & CMYK 数值                & 示例                \\
 %     \midrule
-%       \MN{南京大学}            & |njuviolet|     & $0.50, 1   , 0   , 0.40$ & \B{njuviolet}       \\
-%                                & |njumagenta|    & $0.05, 1   , 0.55, 0   $ & \B{njumagenta}      \\
-%                                & |njublue|       & $0.80, 0.50, 0   , 0   $ & \B{njublue}         \\
-%                                & |njuyellow|     & $0   , 0.30, 1   , 0   $ & \B{njuyellow}       \\
-%       \M{人工智能学院}         & |nju-ai-blue|   & $0.75, 0.65, 0   , 0   $ & \B{nju-ai-blue}     \\
-%                                & |nju-ai-orange| & $0   , 0.75, 1   , 0   $ & \B{nju-ai-orange}   \\
-%       \M{计算机科学与技术系}   & |nju-cs-blue|   & $0.89, 0.66, 0.13, 0   $ & \B{nju-cs-blue}     \\
-%                                & |nju-cs-green|  & $0.60, 0.23, 1   , 0   $ & \B{nju-cs-green}    \\
-%       \M{化学化工学院}         & |nju-chem-red|  & $0.28, 0.95, 0.84, 0   $ & \B{nju-chem-red}    \\
-%                                & |nju-chem-gold| & $0.40, 0.42, 0.60, 0   $ & \B{nju-chem-gold}   \\
+%       \SetCell[r=4]{c} 南京大学
+%         & |njuviolet|     & $0.50, 1   , 0   , 0.40$ & \B{njuviolet}       \\
+%         & |njumagenta|    & $0.05, 1   , 0.55, 0   $ & \B{njumagenta}      \\
+%         & |njublue|       & $0.80, 0.50, 0   , 0   $ & \B{njublue}         \\
+%         & |njuyellow|     & $0   , 0.30, 1   , 0   $ & \B{njuyellow}       \\
+%       \SetCell[r=2]{c} 人工智能学院
+%         & |nju-ai-blue|   & $0.75, 0.65, 0   , 0   $ & \B{nju-ai-blue}     \\
+%         & |nju-ai-orange| & $0   , 0.75, 1   , 0   $ & \B{nju-ai-orange}   \\
+%       \SetCell[r=2]{c} 计算机科学与技术系
+%         & |nju-cs-blue|   & $0.89, 0.66, 0.13, 0   $ & \B{nju-cs-blue}     \\
+%         & |nju-cs-green|  & $0.60, 0.23, 1   , 0   $ & \B{nju-cs-green}    \\
+%       \SetCell[r=2]{c} 化学化工学院
+%         & |nju-chem-red|  & $0.28, 0.95, 0.84, 0   $ & \B{nju-chem-red}    \\
+%         & |nju-chem-gold| & $0.40, 0.42, 0.60, 0   $ & \B{nju-chem-gold}   \\
 %     \bottomrule
-%   \end{tabular}
+%   \end{tblr}
 % \end{table}
 % \endgroup
 %
@@ -320,7 +329,7 @@ through XeTeX.
 % \begin{table}[htb]
 %   \caption{收录院系列表} \label{tab:supported-departments-list}
 %   \centering\small
-%   \begin{tabular}{cccccccc}
+%   \begin{tblr}[expand=\B]{cccccccc}
 %     \toprule
 %       名称 & 选项名称 & emblem & name & name* \\
 %     \midrule
@@ -330,12 +339,12 @@ through XeTeX.
 %       计算机科学与技术系     & |cs|       & \B & & \\
 %       软件学院               & |software| & \B & & \\
 %     \bottomrule
-%   \end{tabular}
+%   \end{tblr}
 % \end{table}
 % \endgroup
 %
 % 对这两个命令的举例如下：
-% \begin{latexexample}[moretexcs={\njuemblem,\njuname}]
+% \begin{latexexample}[moretexcs={\njuemblem,\njuname,\njuname*}]
 %   \njuemblem{!}{3cm}                           % 生成指定大小的紫色南大校徽
 %   \njuname{4cm}{!}                             % 生成指定大小的紫色南大中文校名
 %   \njuname*{4cm}{!}                            % 生成指定大小的紫色南大英文校名
@@ -382,7 +391,7 @@ through XeTeX.
 % \end{shellexample}
 %
 % \end{documentation}
-% 
+%
 %
 % \begin{implementation}
 %
@@ -445,7 +454,7 @@ through XeTeX.
 % 定义南京大学全体院系名单。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_dept_all_clist
-  { nju, dii, eng, chin, history, philo, jc, law, nubs, sfs, im, sociology, 
+  { nju, dii, eng, chin, history, philo, jc, law, nubs, sfs, im, sociology,
     math, physics, astronomy, chem, cs, software, ai, ese, hjxy, sgos,
     as, life, med, sme, hwxy, arch, marxism, art, edu }
 %    \end{macrocode}
@@ -476,7 +485,7 @@ through XeTeX.
 %    \begin{macrocode}
 \msg_new:nnn { njuvisual } { unsupported-department }
   { "#1"~ is~ not~ an~ valid~ option~ \\\\
-    Please~ refer~ to~ the~ package~ documentation~  for~ supported~ 
+    Please~ refer~ to~ the~ package~ documentation~  for~ supported~
     departments~ and~ check~ your~ spelling. \\ }
 %    \end{macrocode}
 %
@@ -489,17 +498,17 @@ through XeTeX.
 \cs_new_protected:Nn \@@_set_color:
   {
     \str_if_eq:VnTF \l_@@_color_a_tl { default }
-      { 
+      {
 %    \end{macrocode}
 % 如果没有单独设定，则使用默认颜色。
 %    \begin{macrocode}
         \clist_if_in:NVTF \c_@@_dept_color_clist \l_@@_dept_tl
-          { \tl_set:Nn \l_@@_color_a_tl 
+          { \tl_set:Nn \l_@@_color_a_tl
               { \clist_item:cn { c_@@_color_ \l_@@_dept_tl _clist } { 1 } }
-            \tl_set:Nn \l_@@_color_b_tl 
+            \tl_set:Nn \l_@@_color_b_tl
               { \clist_item:cn { c_@@_color_ \l_@@_dept_tl _clist } { 2 } } }
           { \tl_set:Nn \l_@@_color_a_tl { njuviolet } }
-      } 
+      }
       { \clist_if_in:NVT \c_@@_dept_color_clist \l_@@_dept_tl
 %    \end{macrocode}
 % 将双色图标设定为纯色。
@@ -562,9 +571,9 @@ through XeTeX.
 %    \begin{macrocode}
             \clist_if_in:NVTF \c_@@_dept_emblem_clist \l_@@_dept_tl
           { \@@_set_color:
-            \@@_tikz_wrapper:nnn 
+            \@@_tikz_wrapper:nnn
               { \use:c { @@_path_emblem_ \l_@@_dept_tl } } { #2 } { #3 } }
-          { \msg_error:nnx { njuvisual } 
+          { \msg_error:nnx { njuvisual }
               { unsupported-department } { \l_@@_dept_tl } }
       }
 %    \end{macrocode}
@@ -594,18 +603,18 @@ through XeTeX.
       {
         \keys_set:nn { njuvisual } { #2 }
         \clist_if_in:NVTF \c_@@_dept_name_clist \l_@@_dept_tl
-          { 
+          {
             \@@_set_color:
 %    \end{macrocode}
 % 通过是否含有可选星号区分输出中英文名称。
 %    \begin{macrocode}
                     \bool_if:NTF { #1 }
-              { \@@_tikz_wrapper:nnn 
+              { \@@_tikz_wrapper:nnn
                   { \use:c { @@_path_name_ #2 _en } } { #3 } { #4 } }
-              { \@@_tikz_wrapper:nnn 
+              { \@@_tikz_wrapper:nnn
                   { \use:c { @@_path_name_ #2 _cn } } { #3 } { #4 } }
           }
-          { \msg_error:nnx { njuvisual } 
+          { \msg_error:nnx { njuvisual }
               { unsupported-department } { \l_@@_dept_tl } }
       }
       {
@@ -629,7 +638,7 @@ through XeTeX.
 % \end{arguments}
 %    \begin{macrocode}
 \NewDocumentCommand \njumotto  { O {black} m m }
-  { 
+  {
     \group_begin:
       \tl_set:Nn \l_@@_color_a_tl { #1 }
       \@@_tikz_wrapper:nnn { \@@_path_motto } { #2 } { #3 }
@@ -648,10 +657,10 @@ through XeTeX.
 % \end{arguments}
 %    \begin{macrocode}
 \NewDocumentCommand \njuspirit { O {black} m m }
-  { 
+  {
     \group_begin:
       \tl_set:Nn \l_@@_color_a_tl { #1 }
-      \@@_tikz_wrapper:nnn { \@@_path_spirit } { #2 } { #3 } 
+      \@@_tikz_wrapper:nnn { \@@_path_spirit } { #2 } { #3 }
     \group_end:
   }
 %</package>
