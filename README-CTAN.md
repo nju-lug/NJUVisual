@@ -1,7 +1,9 @@
 The `njuvisual` package
 =======================
 
-The `njuvisual` package collects standard colors and logos related to Nanjing University, saves the vector logos as tikz pictures and provides a user-friendly interface to display them in documents and beamers.
+The `njuvisual` package collects standard colors and logos related to
+Nanjing University, saves the vector logos as tikz pictures and provides
+a user-friendly interface to display them in documents and beamers.
 
 Basic usage
 -----------
@@ -30,4 +32,4 @@ version.
 
 -----
 
-Copyright (C) 2021 by NJU LUG.
+Copyright (C) 2021 - 2022 by NJU LUG.
