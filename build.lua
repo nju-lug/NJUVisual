@@ -7,7 +7,7 @@ module       = "njuvisual"
 
 sourcefiles  = {"*.dtx"}
 installfiles = {"*.sty"}
-textfiles    = {"LICENSE", "*.md"}
+textfiles    = {"LICENSE", "*.md", "*.ins"}
 ctanreadme   = "README-CTAN.md"
 
 unpackexe    = "xetex"
