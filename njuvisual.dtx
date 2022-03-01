@@ -1,7 +1,8 @@
 % \iffalse meta-comment
 %
 % Copyright (C) 2021 - 2022
-% by Nanjing University Linux User Group <nju.lug@yaoge123.cn>
+% by Nanjing University Linux User Group
+% <git+nju-lug-email-3104-issue-@yaoge123.cn>
 %
 % It may be distributed and/or modified under the conditions of the
 % LaTeX Project Public License (LPPL), either version 1.3c of this
@@ -19,8 +20,7 @@
 %           and the derived files njuvisual.ins,
 %                                 njuvisual.sty,
 %                                 njuvisual.pdf,
-%                                 njuvisual-example.tex,
-%                             and README.md.
+%                                 njuvisual-example.tex.
 %
 % -----------------------------------------------------------------------
 %
@@ -106,11 +106,10 @@ through XeTeX.
 %</internal>
 %
 %<package>\NeedsTeXFormat{LaTeX2e}
-%<package>\RequirePackage{expl3}
-%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.2.1 2022-01-09 16:00:00 +0800  NJU LUG <nju.lug@yaoge123.cn> $
-%<package> { Nanjing University Visual Identity }
+%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.3.0 2022-03-01 18:00:00 +0800 NJU LUG <git+nju-lug-email-3104-issue-@yaoge123.cn>$
+%<package>  {Nanjing University Visual Identity}
 %<package>\ProvidesExplPackage{njuvisual}
-%<package>{\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+%<package>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
 %
 %<*driver>
 \documentclass{ctxdoc}
@@ -185,7 +184,7 @@ through XeTeX.
 % 南京大学 Linux 用户组
 % \thanks{E-mail: \href{mailto:git+nju-lug-email-3104-issue-@yaoge123.cn}{git+nju-lug-email-3104-issue-@yaoge123.cn}}}
 %
-% \date{v0.2.1 \quad 2022-01-09}
+% \date{v0.3.0 \quad 2022-03-01}
 %
 % \changes{v0.1}{2021/11/21}{将 \pkg{njuvisual} 分离为独立宏包。}
 % \changes{v0.1}{2021/11/27}{完成文档编写并发布至 CTAN。}
@@ -226,6 +225,15 @@ through XeTeX.
 %   tlmgr install njuvisual
 % \end{shellexample}
 % 即可完成安装。
+%
+%
+% \section{宏包选项}
+%
+% \begin{function}{force}
+% 使用强制模式载入宏包。
+% \end{function}
+%
+% 在强制模式下，\pkg{njuvisual} 将覆盖已有的 \cs{njuemblem}、\cs{njuname}、\cs{njuspirit}、\cs{njumotto} 命令定义。
 %
 %
 % \section{使用方法}
@@ -404,9 +412,9 @@ through XeTeX.
 %
 % \subsection{载入宏包}
 %
-% 导入 \pkg{tikz} 宏包，其中已包含 \pkg{xcolor}，无需单独加载。
+% 导入所需宏包，其中 \pkg{tikz} 已包含 \pkg{xcolor}，无需单独加载。
 %    \begin{macrocode}
-\RequirePackage { tikz }
+\RequirePackage { l3keys2e, tikz}
 %    \end{macrocode}
 %
 % \subsection{定义变量}
@@ -420,11 +428,92 @@ through XeTeX.
 % \end{macro}
 %
 % \begin{macro}{\l_@@_dept_tl}
-% 存储院系
+% 存储院系。
 %    \begin{macrocode}
 \tl_new:N \l_@@_dept_tl
 %    \end{macrocode}
 % \end{macro}
+%
+% \begin{variable}{\c_@@_cmds_clist}
+% 本宏包定义的全部用户命令。
+%    \begin{macrocode}
+\clist_const:Nn \c_@@_cmds_clist { emblem, name, motto, spirit }
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\c_@@_dept_all_clist}
+% 定义南京大学全体院系名单。
+%    \begin{macrocode}
+\clist_const:Nn \c_@@_dept_all_clist
+  { nju, dii, eng, chin, history, philo, jc, law, nubs, sfs, im, sociology,
+    math, physics, astronomy, chem, cs, software, ai, ese, hjxy, sgos,
+    as, life, med, sme, hwxy, arch, marxism, art, edu }
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\c_@@_dept_emblem_clist}
+% 定义受图标支持的南京大学院系名单。
+%    \begin{macrocode}
+\clist_const:Nn \c_@@_dept_emblem_clist
+  { nju, dii, eng, cs, ai, software, chem }
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\c_@@_dept_name_clist}
+% 定义受名称支持的南京大学院系名单。
+%    \begin{macrocode}
+\clist_const:Nn \c_@@_dept_name_clist   { nju }
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\c_@@_dept_color_clist}
+% 定义受色彩支持的南京大学院系名单。
+%    \begin{macrocode}
+\clist_const:Nn \c_@@_dept_color_clist  { cs, ai, chem }
+%    \end{macrocode}
+% \end{variable}
+%
+% 定义对不支持的院系的报错信息。
+%    \begin{macrocode}
+\msg_new:nnn { njuvisual } { unsupported-department }
+  {
+    "#1"~ is~ not~ an~ available~ option~ currently.\\
+    Please~ refer~ to~ the~ package~ documentation~ for~ supported~
+    departments~ and~ check~ your~ spelling.
+  }
+%    \end{macrocode}
+%
+% \subsection{宏包选项}
+%
+%    \begin{macrocode}
+\msg_new:nnn { njuvisual } { force-mode }
+  { Force~ mode~ on.\\ I~ am~ overwriting~ all~ existing~ commands. }
+%    \end{macrocode}
+%
+% \changes{v0.1}{2022/03/01}{新增选项 \opt{force}。}
+%    \begin{macrocode}
+\keys_define:nn { njuvisual }
+  {
+%    \end{macrocode}
+% \begin{macro}{force}
+% 是否强制定义。
+%    \begin{macrocode}
+    force .value_forbidden:n = true,
+    force         .code:n =
+      {
+        \msg_warning:nn { njuvisual } { force-mode }
+        \clist_map_inline:Nn \c_@@_cmds_clist
+          { \cs_undefine:c { nju ##1 } }
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+%    \begin{macrocode}
+\ProcessKeysOptions { njuvisual }
+%    \end{macrocode}
+%
+% \subsection{内部命令}
 %
 % \changes{v0.1}{2021/11/27}{使用键值对处理院系和颜色。}
 %    \begin{macrocode}
@@ -449,47 +538,6 @@ through XeTeX.
   }
 %    \end{macrocode}
 % \end{macro}
-%
-% \begin{variable}{\c_@@_dept_all_clist}
-% 定义南京大学全体院系名单。
-%    \begin{macrocode}
-\clist_const:Nn \c_@@_dept_all_clist
-  { nju, dii, eng, chin, history, philo, jc, law, nubs, sfs, im, sociology,
-    math, physics, astronomy, chem, cs, software, ai, ese, hjxy, sgos,
-    as, life, med, sme, hwxy, arch, marxism, art, edu }
-%    \end{macrocode}
-% \end{variable}
-%
-% \begin{variable}{\c_@@_dept_emblem_clist}
-% 定义受图标支持的南京大学院系名单。
-%    \begin{macrocode}
-\clist_const:Nn \c_@@_dept_emblem_clist { nju, dii, eng, cs, ai, software, chem }
-%    \end{macrocode}
-% \end{variable}
-%
-% \begin{variable}{\c_@@_dept_name_clist}
-% 定义受名称支持的南京大学院系名单。
-%    \begin{macrocode}
-\clist_const:Nn \c_@@_dept_name_clist   { nju }
-%    \end{macrocode}
-% \end{variable}
-%
-% \begin{variable}{\c_@@_dept_color_clist}
-% 定义受色彩支持的南京大学院系名单。
-%    \begin{macrocode}
-\clist_const:Nn \c_@@_dept_color_clist  { cs, ai, chem }
-%    \end{macrocode}
-% \end{variable}
-%
-% 定义对不支持的院系的报错信息。
-%    \begin{macrocode}
-\msg_new:nnn { njuvisual } { unsupported-department }
-  { "#1"~ is~ not~ an~ valid~ option~ \\\\
-    Please~ refer~ to~ the~ package~ documentation~  for~ supported~
-    departments~ and~ check~ your~ spelling. \\ }
-%    \end{macrocode}
-%
-% \subsection{内部命令}
 %
 % \begin{macro}{\@@_set_color:}
 % \changes{v0.1}{2021/11/25}{完善设定颜色的方法。}
@@ -545,6 +593,24 @@ through XeTeX.
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\@@_check_cmd:nn}
+% 检查载入宏包前相关命令是否有定义。
+%    \begin{macrocode}
+\msg_new:nnn { njuvisual } { duplicate-command }
+  {
+    The~ command~ "#1 "~ is~ already~ defined.\\
+    I~ am~ not~ going~ to~ redefine~ it~ anyway.~
+    Or~ you~ can~ use~ the~ package~ option~ "force"~
+    to~ overwrite~ existing~ definitions.
+  }
+\cs_new_protected:Npn \@@_check_cmd:nn #1#2
+  {
+    \cs_if_free:cTF { #1 } { #2 }
+      { \msg_warning:nnn { njuvisual } { duplicate-command } { #1 } }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
 %
 % \subsection{用户接口}
 %
@@ -557,31 +623,41 @@ through XeTeX.
 %   \item 高度
 % \end{arguments}
 %    \begin{macrocode}
-\NewDocumentCommand \njuemblem { O { njuviolet } m m }
+\@@_check_cmd:nn { njuemblem }
   {
-    \group_begin:
+    \NewDocumentCommand \njuemblem { O { njuviolet } m m }
+      {
+        \group_begin:
 %    \end{macrocode}
 % 根据参数是否含有 |=| 来判断该参数是颜色还是选项列表。
 %    \begin{macrocode}
-      \@@_if_key_value_list:nTF { #1 }
-      {
-        \keys_set:nn { njuvisual } { #1 }
+          \@@_if_key_value_list:nTF { #1 }
+            {
+              \keys_set:nn { njuvisual } { #1 }
 %    \end{macrocode}
 % 检查是否受支持。
 %    \begin{macrocode}
-            \clist_if_in:NVTF \c_@@_dept_emblem_clist \l_@@_dept_tl
-          { \@@_set_color:
-            \@@_tikz_wrapper:nnn
-              { \use:c { @@_path_emblem_ \l_@@_dept_tl } } { #2 } { #3 } }
-          { \msg_error:nnx { njuvisual }
-              { unsupported-department } { \l_@@_dept_tl } }
-      }
+              \clist_if_in:NVTF \c_@@_dept_emblem_clist \l_@@_dept_tl
+                {
+                  \@@_set_color:
+                  \@@_tikz_wrapper:nnn
+                    { \use:c { @@_path_emblem_ \l_@@_dept_tl } }
+                    { #2 } { #3 }
+                }
+                {
+                   \msg_error:nnx { njuvisual }
+                    { unsupported-department } { \l_@@_dept_tl }
+                }
+            }
 %    \end{macrocode}
 % 单独设置颜色时输出官方徽标。
 %    \begin{macrocode}
-        { \tl_set:Nn \l_@@_color_a_tl { #1 }
-        \@@_tikz_wrapper:nnn { \@@_path_emblem_nju } { #2 } { #3 } }
-    \group_end:
+            {
+              \tl_set:Nn \l_@@_color_a_tl { #1 }
+              \@@_tikz_wrapper:nnn { \@@_path_emblem_nju } { #2 } { #3 }
+            }
+        \group_end:
+      }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -596,34 +672,43 @@ through XeTeX.
 %   \item 高度
 % \end{arguments}
 %    \begin{macrocode}
-\NewDocumentCommand \njuname { t* O { njuviolet } m m }
+\@@_check_cmd:nn { njuname }
   {
-    \group_begin:
-      \@@_if_key_value_list:nTF { #2 }
+    \NewDocumentCommand \njuname { s O { njuviolet } m m }
       {
-        \keys_set:nn { njuvisual } { #2 }
-        \clist_if_in:NVTF \c_@@_dept_name_clist \l_@@_dept_tl
-          {
-            \@@_set_color:
+        \group_begin:
+          \@@_if_key_value_list:nTF { #2 }
+            {
+              \keys_set:nn { njuvisual } { #2 }
+              \clist_if_in:NVTF \c_@@_dept_name_clist \l_@@_dept_tl
+                {
+                  \@@_set_color:
 %    \end{macrocode}
 % 通过是否含有可选星号区分输出中英文名称。
 %    \begin{macrocode}
-                    \bool_if:NTF { #1 }
-              { \@@_tikz_wrapper:nnn
-                  { \use:c { @@_path_name_ #2 _en } } { #3 } { #4 } }
-              { \@@_tikz_wrapper:nnn
-                  { \use:c { @@_path_name_ #2 _cn } } { #3 } { #4 } }
-          }
-          { \msg_error:nnx { njuvisual }
-              { unsupported-department } { \l_@@_dept_tl } }
+                  \bool_if:NTF { #1 }
+                    {
+                       \@@_tikz_wrapper:nnn
+                        { \use:c { @@_path_name_ #2 _en } } { #3 } { #4 }
+                    }
+                    {
+                      \@@_tikz_wrapper:nnn
+                        { \use:c { @@_path_name_ #2 _cn } } { #3 } { #4 }
+                    }
+                }
+                {
+                  \msg_error:nnx { njuvisual }
+                    { unsupported-department } { \l_@@_dept_tl }
+                }
+            }
+            {
+              \tl_set:Nn \l_@@_color_a_tl { #2 }
+              \bool_if:NTF { #1 }
+                { \@@_tikz_wrapper:nnn { \@@_path_name_nju_en } { #3 } { #4 } }
+                { \@@_tikz_wrapper:nnn { \@@_path_name_nju_cn } { #3 } { #4 } }
+            }
+        \group_end:
       }
-      {
-        \tl_set:Nn \l_@@_color_a_tl { #2 }
-        \bool_if:NTF { #1 }
-          { \@@_tikz_wrapper:nnn { \@@_path_name_nju_en } { #3 } { #4 } }
-          { \@@_tikz_wrapper:nnn { \@@_path_name_nju_cn } { #3 } { #4 } }
-      }
-    \group_end:
   }
 %    \end{macrocode}
 % \end{macro}
@@ -637,12 +722,15 @@ through XeTeX.
 %   \item 高度
 % \end{arguments}
 %    \begin{macrocode}
-\NewDocumentCommand \njumotto  { O {black} m m }
+\@@_check_cmd:nn { njumotto }
   {
-    \group_begin:
-      \tl_set:Nn \l_@@_color_a_tl { #1 }
-      \@@_tikz_wrapper:nnn { \@@_path_motto } { #2 } { #3 }
-    \group_end:
+    \NewDocumentCommand \njumotto  { O {black} m m }
+      {
+        \group_begin:
+          \tl_set:Nn \l_@@_color_a_tl { #1 }
+          \@@_tikz_wrapper:nnn { \@@_path_motto } { #2 } { #3 }
+        \group_end:
+      }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -656,12 +744,15 @@ through XeTeX.
 %   \item 高度
 % \end{arguments}
 %    \begin{macrocode}
-\NewDocumentCommand \njuspirit { O {black} m m }
+\@@_check_cmd:nn { njuspirit }
   {
-    \group_begin:
-      \tl_set:Nn \l_@@_color_a_tl { #1 }
-      \@@_tikz_wrapper:nnn { \@@_path_spirit } { #2 } { #3 }
-    \group_end:
+    \NewDocumentCommand \njuspirit { O {black} m m }
+      {
+        \group_begin:
+          \tl_set:Nn \l_@@_color_a_tl { #1 }
+          \@@_tikz_wrapper:nnn { \@@_path_spirit } { #2 } { #3 }
+        \group_end:
+      }
   }
 %</package>
 %    \end{macrocode}
