@@ -106,7 +106,7 @@ through XeTeX.
 %</internal>
 %
 %<package>\NeedsTeXFormat{LaTeX2e}
-%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.3.0 2022-03-01 18:00:00 +0800 NJU LUG <git+nju-lug-email-3104-issue-@yaoge123.cn>$
+%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.3.0 2022-05-27 17:26:00 +0800 NJU LUG <git+nju-lug-email-3104-issue-@yaoge123.cn>$
 %<package>  {Nanjing University Visual Identity}
 %<package>\ProvidesExplPackage{njuvisual}
 %<package>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -184,7 +184,7 @@ through XeTeX.
 % 南京大学 Linux 用户组
 % \thanks{E-mail: \href{mailto:git+nju-lug-email-3104-issue-@yaoge123.cn}{git+nju-lug-email-3104-issue-@yaoge123.cn}}}
 %
-% \date{v0.3.0 \quad 2022-03-01}
+% \date{v0.3.0 \quad 2022-05-27}
 %
 % \changes{v0.1}{2021/11/21}{将 \pkg{njuvisual} 分离为独立宏包。}
 % \changes{v0.1}{2021/11/27}{完成文档编写并发布至 CTAN。}
@@ -259,8 +259,11 @@ through XeTeX.
 %     \toprule
 %       名称 & 颜色名称     & CMYK 数值                & 示例                \\
 %     \midrule
-%       \SetCell[r=4]{c} 南京大学
-%         & |njuviolet|     & $0.50, 1   , 0   , 0.40$ & \B{njuviolet}       \\
+%       \SetCell[r=5]{c} 南京大学
+%         & |njuviolet|     & \SetCell[r=2]{c}
+%                             $0.50, 1   , 0   , 0.40$ &
+%                                       \SetCell[r=2]{c} \B{njuviolet}       \\
+%         & |njupurple|     &                          &                     \\
 %         & |njumagenta|    & $0.05, 1   , 0.55, 0   $ & \B{njumagenta}      \\
 %         & |njublue|       & $0.80, 0.50, 0   , 0   $ & \B{njublue}         \\
 %         & |njuyellow|     & $0   , 0.30, 1   , 0   $ & \B{njuyellow}       \\
