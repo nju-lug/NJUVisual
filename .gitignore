@@ -14,14 +14,15 @@
 
 ## DocStrip generated file
 *.cls
+*.def
 *.ins
 *.sty
 njuvisual-example.tex
 
-
 ## Folders
 build/
 pngfiles/
+temp/
 
 ## l3build generated file
 *.zip

@@ -1,0 +1,151 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2021 - 2022
+% by Nanjing University Linux User Group 
+% <git+nju-lug-email-3104-issue-@yaoge123.cn>
+%
+% It may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License (LPPL), either version 1.3c of this
+% license or (at your option) any later version. The latest version
+% of this license is in the file
+%
+%    https://www.latex-project.org/lppl.txt
+%
+% -----------------------------------------------------------------------
+%
+% The development version of the template can be found at
+%
+%    https://github.com/nju-lug/NJUVisual
+%
+% for those people who are interested.
+%
+% -----------------------------------------------------------------------
+%
+% \fi
+%
+% \begin{implementation}
+%
+% \subsubsection{人工智能学院}
+%
+% \begin{macro}{\c_@@_color_ai_clist,nju-ai-blue,nju-ai-orange}
+% 定义人工智能学院标准色
+%    \begin{macrocode}
+%<*color>
+\clist_const:Nn \c_@@_color_ai_clist { nju-ai-blue, nju-ai-orange }
+\definecolor { nju-ai-blue   } { cmyk } { 0.75, 0.65, 0   , 0    }
+\definecolor { nju-ai-orange } { cmyk } { 0   , 0.75, 1   , 0    }
+%</color>
+%    \end{macrocode}
+% \end{macro}
+%
+% \changes{v0.1}{2021/11/27}{添加人工智能学院标准色与徽标。}
+% 人工智能学院徽标。由同学提供描图版本。
+% \\ \njuemblem[department=ai]{2.5cm}{!}
+%    \begin{macrocode}
+%<example>\FIG{emblem-ai}         \njuemblem[department=ai]{!}{!}
+%    \end{macrocode}
+% \end{implementation}
+%
+% \DisableImplementation
+%
+% \begin{implementation}
+%    \begin{macrocode}
+%<*emblem-ai>
+\begin{scope}[cm={{1.33333,0.0,0.0,-1.33333,(0.0,1122.52)}}]
+\begin{scope}[shift={(211.69,617.343)}]
+\path[fill=\l_@@_color_a_tl,nonzero~rule]
+            (    0.0000,    0.0000 )
+         -- (   21.3520,    0.0000 )
+         -- (   37.0940,  -42.2970 )
+         -- (   37.0940,   -0.1900 )
+         -- (   49.8020,   -0.1900 )
+         -- (   49.8020,  -44.7630 )
+.. controls (   49.8020,  -44.7630 ) and (   49.6340,  -47.6780 ) .. (   48.1440,  -49.2150 )
+.. controls (   46.6000,  -50.8060 ) and (   43.7330,  -51.0220 ) .. (   43.7330,  -51.0220 )
+         -- (   28.3700,  -51.0220 )
+         -- (   12.8170,   -8.9150 )
+         -- (   12.8170,  -44.5730 )
+.. controls (   12.8170,  -44.5730 ) and (   12.9690,  -47.3740 ) .. (   11.5560,  -48.9370 )
+.. controls (   10.0330,  -50.6220 ) and (    6.9370,  -51.0770 ) .. (    6.9370,  -51.0770 )
+         -- (   -0.0260,  -51.0770 )
+-- cycle;
+\end{scope}
+\begin{scope}[shift={(268.16,605.105)}]
+\path[fill=\l_@@_color_a_tl,nonzero~rule]
+            (    0.0000,    0.0000 )
+         -- (    7.1320,    0.0000 )
+.. controls (    7.1320,    0.0000 ) and (    9.0260,   -0.1400 ) .. (   10.2830,   -1.2640 )
+.. controls (   11.5650,   -2.4090 ) and (   12.2100,   -4.5380 ) .. (   12.2100,   -4.5380 )
+         -- (   12.2100,  -37.1690 )
+.. controls (   12.2100,  -37.1690 ) and (   12.0550,  -44.5890 ) .. (    5.7790,  -50.1910 )
+.. controls (    0.3550,  -55.0310 ) and (   -6.4830,  -54.3490 ) .. (   -6.4830,  -54.3490 )
+         -- (   -6.4830,  -42.1400 )
+.. controls (   -6.4830,  -42.1400 ) and (   -3.3990,  -42.2340 ) .. (   -1.7330,  -40.5110 )
+.. controls (   -0.2790,  -39.0080 ) and (   -0.2160,  -35.6560 ) .. (   -0.2160,  -35.6560 )
+-- cycle;
+\end{scope}
+\begin{scope}[shift={(335.096,581.4)}]
+\path[fill=\l_@@_color_a_tl,nonzero~rule]
+            (    0.0000,    0.0000 )
+         -- (    0.0000,   35.8070 )
+         -- (  -12.1030,   35.8070 )
+         -- (  -12.0290,    0.0770 )
+.. controls (  -12.0290,    0.0770 ) and (  -12.3250,   -0.5170 ) .. (  -13.1450,   -1.7710 )
+.. controls (  -13.7070,   -2.6320 ) and (  -14.2290,   -3.0670 ) .. (  -14.4790,   -3.3080 )
+.. controls (  -15.0880,   -3.8910 ) and (  -24.4560,   -8.1580 ) .. (  -24.4560,   -8.1580 )
+         -- (  -24.4630,   -8.1580 )
+.. controls (  -24.4630,   -8.1580 ) and (  -33.8300,   -3.8910 ) .. (  -34.4390,   -3.3080 )
+.. controls (  -34.6880,   -3.0670 ) and (  -35.2110,   -2.6320 ) .. (  -35.7730,   -1.7710 )
+.. controls (  -36.5940,   -0.5170 ) and (  -36.8890,    0.0770 ) .. (  -36.8890,    0.0770 )
+         -- (  -36.8160,   35.8070 )
+         -- (  -48.9180,   35.8070 )
+         -- (  -48.9180,    0.0000 )
+.. controls (  -48.9180,    0.0000 ) and (  -47.4490,  -17.9970 ) .. (  -24.4820,  -17.9970 )
+.. controls (   -0.9540,  -17.9970 ) and (    0.0000,    0.0000 ) .. (    0.0000,    0.0000 );
+\end{scope}
+\begin{scope}[shift={(360.435,583.274)}]
+\path[fill=\l_@@_color_b_tl,nonzero~rule]
+            (    0.0000,    0.0000 )
+         -- (    0.0000,    2.9450 )
+         -- (    4.7380,    8.7080 )
+         -- (    6.9160,    0.0000 )
+-- cycle
+            (   31.2480,  -24.8420 )
+         -- (   16.1370,   41.8740 )
+         -- (    6.6600,   41.8740 )
+         -- (   -5.3060,   36.8800 )
+         -- (   -7.9390,   25.4830 )
+         -- (   -3.8410,   23.5620 )
+         -- (  -19.0820,    2.9450 )
+         -- (  -19.0820,  -24.4580 )
+         -- (  -25.5030,  -24.4580 )
+         -- (  -23.8380,  -31.6290 )
+         -- (  -12.6780,  -31.6290 )
+.. controls (  -12.6780,  -31.6290 ) and (  -10.8970,  -31.4910 ) .. (   -9.5630,  -30.2560 )
+.. controls (   -8.3420,  -29.1250 ) and (   -7.5560,  -26.8920 ) .. (   -7.5560,  -26.8920 )
+         -- (   -1.2800,  -13.1890 )
+         -- (    9.9890,  -13.1890 )
+         -- (   12.9360,  -24.4580 )
+         -- (    6.6600,  -24.4580 )
+         -- (    8.3240,  -31.6670 )
+         -- (   26.9770,  -31.6670 )
+.. controls (   26.9770,  -31.6670 ) and (   29.2680,  -32.1750 ) .. (   30.8890,  -28.8520 )
+.. controls (   31.7080,  -27.1730 ) and (   31.2480,  -24.8420 ) .. (   31.2480,  -24.8420 );
+\end{scope}
+\begin{scope}[shift={(389.378,596.208)}]
+\path[fill=\l_@@_color_b_tl,nonzero~rule]
+            (    0.0000,    0.0000 )
+         -- (   15.4960,    0.0000 )
+         -- (   24.9730,  -38.6730 )
+.. controls (   24.9730,  -38.6730 ) and (   25.1610,  -40.3940 ) .. (   24.5980,  -41.7280 )
+.. controls (   23.6860,  -43.8880 ) and (   21.3880,  -44.4350 ) .. (   21.3880,  -44.4350 )
+         -- (   10.1180,  -44.4350 )
+-- cycle;
+\end{scope}
+\end{scope}
+%</emblem-ai>
+%    \end{macrocode}
+% \end{implementation}
+%
+% \EnableImplementation
+%

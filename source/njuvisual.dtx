@@ -16,10 +16,31 @@
 % The Current Maintainer of this work is Yu Xiong.
 %
 % This work consists of the files njuvisual.dtx,
-%                                 njuvisual-curves.dtx,
+%                                 njuvisual-emblem.dtx,
+%                                 njuvisual-name.dtx,
+%                                 njuvisual-motto.dtx,
+%                                 njuvisual-spirit.dtx,
+%                                 njuvisual-ai.dtx,
+%                                 njuvisual-chem.dtx,
+%                                 njuvisual-cs.dtx,
+%                                 njuvisual-dii.dtx,
+%                                 njuvisual-eng.dtx,
+%                                 njuvisual-software.dtx,
+%                                 njuvisual-end.dtx,
 %           and the derived files njuvisual.ins,
 %                                 njuvisual.sty,
 %                                 njuvisual.pdf,
+%                                 njuvisual-emblem-nju.def,
+%                                 njuvisual-emblem-ai.def,
+%                                 njuvisual-emblem-chem.def,
+%                                 njuvisual-emblem-cs.def,
+%                                 njuvisual-emblem-dii.def,
+%                                 njuvisual-emblem-eng.def,
+%                                 njuvisual-emblem-software.def,
+%                                 njuvisual-motto-nju.def,
+%                                 njuvisual-name-zh-nju.def,
+%                                 njuvisual-name-en-nju.def,
+%                                 njuvisual-spirit-nju.def,
 %                                 njuvisual-example.tex.
 %
 % -----------------------------------------------------------------------
@@ -31,11 +52,6 @@
 % for those people who are interested.
 %
 %<*internal>
-\iffalse
-%</internal>
-%
-%<*internal>
-\fi
 \begingroup
   \def\NameOfLaTeXe{LaTeX2e}
 \expandafter\endgroup\ifx\NameOfLaTeXe\fmtname\else
@@ -50,7 +66,8 @@
 \preamble
 
 Copyright (C) 2021 - 2022
-by Nanjing University Linux User Group <nju.lug@yaoge123.cn>
+by Nanjing University Linux User Group 
+% <git+nju-lug-email-3104-issue-@yaoge123.cn>
 
 This file may be distributed and/or modified under the conditions of
 the LaTeX Project Public License, either version 1.3c of this license
@@ -69,11 +86,38 @@ through XeTeX.
 
 \generate{
   \usedir{tex/latex/njuvisual}
-    \file{\jobname.sty}           {\from{\jobname.dtx}{package}
-                                   \from{\jobname-curves.dtx}{color}
-                                   \from{\jobname-curves.dtx}{curve}}
-    \file{\jobname-example.tex}   {\from{\jobname.dtx}{example}
-                                   \from{\jobname-curves.dtx}{example}}
+    \file{\jobname-example.tex}  {\from{\jobname.dtx}{example}
+                                  \from{\jobname-emblem.dtx}{example}
+                                  \from{\jobname-name.dtx}{example}
+                                  \from{\jobname-motto.dtx}{example}
+                                  \from{\jobname-spirit.dtx}{example}
+                                  \from{\jobname-ai.dtx}{example}
+                                  \from{\jobname-chem.dtx}{example}
+                                  \from{\jobname-cs.dtx}{example}
+                                  \from{\jobname-dii.dtx}{example}
+                                  \from{\jobname-eng.dtx}{example}
+                                  \from{\jobname-software.dtx}{example}
+                                  \from{\jobname-end.dtx}{example}}
+    \file{\jobname.sty}  {\from{\jobname.dtx}{package}
+                          \from{\jobname-emblem.dtx}{color}
+                          \from{\jobname-ai.dtx}{color}
+                          \from{\jobname-chem.dtx}{color}
+                          \from{\jobname-cs.dtx}{color}
+                          \from{\jobname-dii.dtx}{color}
+                          \from{\jobname-eng.dtx}{color}
+                          \from{\jobname-software.dtx}{color}}
+    \nopreamble\nopostamble
+    \file{\jobname-emblem-nju.def}  {\from{\jobname-emblem.dtx}{emblem-nju}}
+    \file{\jobname-name-zh-nju.def} {\from{\jobname-name.dtx}{name-zh-nju}}
+    \file{\jobname-name-en-nju.def} {\from{\jobname-name.dtx}{name-en-nju}}
+    \file{\jobname-motto-nju.def}   {\from{\jobname-motto.dtx}{motto-nju}}
+    \file{\jobname-spirit-nju.def}  {\from{\jobname-spirit.dtx}{spirit-nju}}
+    \file{\jobname-emblem-ai.def}        {\from{\jobname-ai.dtx}{emblem-ai}}
+    \file{\jobname-emblem-chem.def}      {\from{\jobname-chem.dtx}{emblem-chem}}
+    \file{\jobname-emblem-cs.def}        {\from{\jobname-cs.dtx}{emblem-cs}}
+    \file{\jobname-emblem-dii.def}       {\from{\jobname-dii.dtx}{emblem-dii}}
+    \file{\jobname-emblem-eng.def}       {\from{\jobname-eng.dtx}{emblem-eng}}
+    \file{\jobname-emblem-software.def}  {\from{\jobname-software.dtx}{emblem-software}}
 %<*internal>
   \usedir{source/latex/njuvisual}
     \file{\jobname.ins} {\from{\jobname.dtx}{install}}
@@ -106,7 +150,8 @@ through XeTeX.
 %</internal>
 %
 %<package>\NeedsTeXFormat{LaTeX2e}
-%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.3.0 2022-05-27 17:26:00 +0800 NJU LUG <git+nju-lug-email-3104-issue-@yaoge123.cn>$
+%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.3.0 2022-12-08 23:19:00 
+%<!(driver|example)>  +0800 NJU LUG <git+nju-lug-email-3104-issue-@yaoge123.cn>$
 %<package>  {Nanjing University Visual Identity}
 %<package>\ProvidesExplPackage{njuvisual}
 %<package>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -123,7 +168,7 @@ through XeTeX.
 \DefTblrTemplate{caption-sep}{default}{\quad}
 \setlist[1]{labelindent=0.5em}
 \hypersetup{pdftitle={The njuvisual package - Display logos related to Nanjing University}}
-\hypersetup{%
+\hypersetup{
   citecolor = njublue,
   linkcolor = njuviolet,
   urlcolor  = njumagenta}
@@ -169,7 +214,17 @@ through XeTeX.
   \lstset{style=style@latex, #1}}{}
 \begin{document}
   \DocInput{njuvisual.dtx}
-  \DocInput{njuvisual-curves.dtx}
+  \DocInput{njuvisual-emblem.dtx}
+  \DocInput{njuvisual-name.dtx}
+  \DocInput{njuvisual-motto.dtx}
+  \DocInput{njuvisual-spirit.dtx}
+  \DocInput{njuvisual-ai.dtx}
+  \DocInput{njuvisual-chem.dtx}
+  \DocInput{njuvisual-cs.dtx}
+  \DocInput{njuvisual-dii.dtx}
+  \DocInput{njuvisual-eng.dtx}
+  \DocInput{njuvisual-software.dtx}
+  \DocInput{njuvisual-end.dtx}
   \PrintChanges
   \PrintIndex
 \end{document}
@@ -189,6 +244,7 @@ through XeTeX.
 % \changes{v0.1}{2021/11/21}{将 \pkg{njuvisual} 分离为独立宏包。}
 % \changes{v0.1}{2021/11/27}{完成文档编写并发布至 CTAN。}
 % \changes{v0.1}{2021/11/28}{使用 GitHub Action 进行自动打包发布。}
+% \changes{v0.3}{2022/12/08}{将贝塞尔曲线存储到单独文件。}
 %
 % \maketitle
 %
@@ -233,7 +289,8 @@ through XeTeX.
 % 使用强制模式载入宏包。
 % \end{function}
 %
-% 在强制模式下，\pkg{njuvisual} 将覆盖已有的 \cs{njuemblem}、\cs{njuname}、\cs{njuspirit}、\cs{njumotto} 命令定义。
+% 在强制模式下，\pkg{njuvisual} 将覆盖已有的 \cs{njuemblem}、
+% \cs{njuname}、\cs{njuspirit}、\cs{njumotto} 命令定义。
 %
 %
 % \section{使用方法}
@@ -437,6 +494,13 @@ through XeTeX.
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\l_@@_curve_tl}
+% 存储使用的贝塞尔曲线路径。
+%    \begin{macrocode}
+\tl_new:N \l_@@_curve_tl
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{variable}{\c_@@_cmds_clist}
 % 本宏包定义的全部用户命令。
 %    \begin{macrocode}
@@ -465,18 +529,20 @@ through XeTeX.
 % \begin{variable}{\c_@@_dept_name_clist}
 % 定义受名称支持的南京大学院系名单。
 %    \begin{macrocode}
-\clist_const:Nn \c_@@_dept_name_clist   { nju }
+\clist_const:Nn \c_@@_dept_name_clist { nju }
 %    \end{macrocode}
 % \end{variable}
 %
 % \begin{variable}{\c_@@_dept_color_clist}
 % 定义受色彩支持的南京大学院系名单。
 %    \begin{macrocode}
-\clist_const:Nn \c_@@_dept_color_clist  { cs, ai, chem }
+\clist_const:Nn \c_@@_dept_color_clist { cs, ai, chem }
 %    \end{macrocode}
 % \end{variable}
 %
-% 定义对不支持的院系的报错信息。
+% \subsection{错误信息}
+%
+% 集中定义错误信息。
 %    \begin{macrocode}
 \msg_new:nnn { njuvisual } { unsupported-department }
   {
@@ -484,14 +550,18 @@ through XeTeX.
     Please~ refer~ to~ the~ package~ documentation~ for~ supported~
     departments~ and~ check~ your~ spelling.
   }
+\msg_new:nnn { njuvisual } { force-mode }
+  { Force~ mode~ on.\\ I~ am~ overwriting~ all~ existing~ commands. }
+\msg_new:nnn { njuvisual } { duplicate-command }
+  {
+    The~ command~ "\string#1"~ is~ already~ defined.\\
+    I~ am~ not~ going~ to~ redefine~ it~ anyway.~
+    Or~ you~ can~ use~ the~ package~ option~ "force"~
+    to~ overwrite~ existing~ definitions.
+  }
 %    \end{macrocode}
 %
 % \subsection{宏包选项}
-%
-%    \begin{macrocode}
-\msg_new:nnn { njuvisual } { force-mode }
-  { Force~ mode~ on.\\ I~ am~ overwriting~ all~ existing~ commands. }
-%    \end{macrocode}
 %
 % \changes{v0.1}{2022/03/01}{新增选项 \opt{force}。}
 %    \begin{macrocode}
@@ -502,7 +572,7 @@ through XeTeX.
 % 是否强制定义。
 %    \begin{macrocode}
     force .value_forbidden:n = true,
-    force         .code:n =
+    force            .code:n =
       {
         \msg_warning:nn { njuvisual } { force-mode }
         \clist_map_inline:Nn \c_@@_cmds_clist
@@ -569,7 +639,7 @@ through XeTeX.
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_tikz_wrapper:nnn}
+% \begin{macro}{\@@_tikz_wrapper:nnn,\@@_tikz_wrapper:Vnn}
 % 可变大小的 tikz 容器。\footnote{此处手动调整了列表缩进，实际上\env{arguments}环境的缩进问题已在\href{https://github.com/CTeX-org/ctex-kit/commit/838ebab8378b6b0477f5aece81ace28ae2a8bcd9}{838ebab}提交中修复}
 % \begin{arguments}
 %   \item 路径
@@ -577,6 +647,7 @@ through XeTeX.
 %   \item 高度
 % \end{arguments}
 % 封装 resizebox 和 tikzpicture 环境，减少重复。
+% ^^A 考虑转换到 \box_autosize_to_wd_and_ht:Nnn
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_tikz_wrapper:nnn #1#2#3
   {
@@ -585,6 +656,7 @@ through XeTeX.
           xscale=1, inner~sep=0pt, outer~sep=0pt] #1
       \end{tikzpicture} }
   }
+\cs_generate_variant:Nn \@@_tikz_wrapper:nnn { V }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -596,26 +668,100 @@ through XeTeX.
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_check_cmd:nn}
+% \begin{macro}{\@@_check_cmd:NF}
 % 检查载入宏包前相关命令是否有定义。
 %    \begin{macrocode}
-\msg_new:nnn { njuvisual } { duplicate-command }
+\cs_new_protected:Npn \@@_check_cmd:NF #1
   {
-    The~ command~ "#1 "~ is~ already~ defined.\\
-    I~ am~ not~ going~ to~ redefine~ it~ anyway.~
-    Or~ you~ can~ use~ the~ package~ option~ "force"~
-    to~ overwrite~ existing~ definitions.
+    \cs_if_exist:NTF #1
+      { \msg_warning:nnn { njuvisual } { duplicate-command } {#1} }
   }
-\cs_new_protected:Npn \@@_check_cmd:nn #1#2
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_import_curve:nF,\@@_import_curve:n}
+% 从相应的 \file{njuvisual-*.def} 文件读取内容，存储到 \cs{l_@@_curve_tl}。
+%    \begin{macrocode}
+\cs_new:Npn \@@_import_curve:nF #1
+  { \file_get:nnNF { njuvisual- #1 .def } { \ExplSyntaxOn } \l_@@_curve_tl }
+\cs_new:Npn \@@_import_curve:n #1 
+  { \@@_import_curve:nF {#1} { \BOOM } }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_print:nnnn}
+% 输出 \pkg{tikz} 曲线。
+% \begin{arguments}
+%   \item 类别
+%   \item 颜色或者键值对
+%   \item 宽度
+%   \item 高度
+% \end{arguments}
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_print:nnnn #1#2#3#4
   {
-    \cs_if_free:cTF { #1 } { #2 }
-      { \msg_warning:nnn { njuvisual } { duplicate-command } { #1 } }
+    \group_begin:
+%    \end{macrocode}
+% 根据参数是否含有 |=| 来判断该参数是颜色还是选项列表。
+%    \begin{macrocode}
+      \@@_if_key_value_list:nTF { #2 }
+        {
+          \keys_set:nn { njuvisual } { #2 }
+%    \end{macrocode}
+% 检查是否受支持。
+%    \begin{macrocode}
+          \@@_import_curve:nF { #1 - \l_@@_dept_tl }
+            {
+              \msg_error:nnx { njuvisual }
+                { unsupported-department } { \l_@@_dept_tl }
+            }
+          \@@_set_color:
+          \@@_tikz_wrapper:Vnn \l_@@_curve_tl { #3 } { #4 }
+        }
+%    \end{macrocode}
+% 单独设置颜色时输出官方徽标。
+%    \begin{macrocode}
+        {
+          \tl_set:Nn \l_@@_color_a_tl { #2 }
+          \@@_import_curve:n { #1 - nju }
+          \@@_tikz_wrapper:Vnn \l_@@_curve_tl { #3 } { #4 }
+        }
+    \group_end:
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_name:nnnn}
+% 通过是否含有可选星号区分输出中英文名称。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_name:nnnn #1
+  {
+    \bool_if:NTF #1
+      { \@@_print:nnnn { name-en } }
+      { \@@_print:nnnn { name-zh } }
   }
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \subsection{用户接口}
+%
+% \begin{macro}{\njuname,\njuname*}
+% 定义南京大学标准名称，分为中英文两种。
+% \begin{arguments}
+%   \item 可选星号
+%   \item 颜色或者键值对
+%   \item 宽度
+%   \item 高度
+% \end{arguments}
+%    \begin{macrocode}
+\@@_check_cmd:NF \njuname
+  {
+    \NewDocumentCommand \njuname { s O { njuviolet } m m }
+      { \@@_name:nnnn { #1 } { #2 } { #3 } { #4 } }
+  }
+%    \end{macrocode}
+% \end{macro}
 %
 % \begin{macro}{\njuemblem}
 % \changes{v0.1}{2021/11/24}{将学校和院系的徽标和名称命令统一。}
@@ -626,140 +772,37 @@ through XeTeX.
 %   \item 高度
 % \end{arguments}
 %    \begin{macrocode}
-\@@_check_cmd:nn { njuemblem }
+\@@_check_cmd:NF \njuemblem
   {
     \NewDocumentCommand \njuemblem { O { njuviolet } m m }
-      {
-        \group_begin:
-%    \end{macrocode}
-% 根据参数是否含有 |=| 来判断该参数是颜色还是选项列表。
-%    \begin{macrocode}
-          \@@_if_key_value_list:nTF { #1 }
-            {
-              \keys_set:nn { njuvisual } { #1 }
-%    \end{macrocode}
-% 检查是否受支持。
-%    \begin{macrocode}
-              \clist_if_in:NVTF \c_@@_dept_emblem_clist \l_@@_dept_tl
-                {
-                  \@@_set_color:
-                  \@@_tikz_wrapper:nnn
-                    { \use:c { @@_path_emblem_ \l_@@_dept_tl } }
-                    { #2 } { #3 }
-                }
-                {
-                   \msg_error:nnx { njuvisual }
-                    { unsupported-department } { \l_@@_dept_tl }
-                }
-            }
-%    \end{macrocode}
-% 单独设置颜色时输出官方徽标。
-%    \begin{macrocode}
-            {
-              \tl_set:Nn \l_@@_color_a_tl { #1 }
-              \@@_tikz_wrapper:nnn { \@@_path_emblem_nju } { #2 } { #3 }
-            }
-        \group_end:
-      }
+      { \@@_print:nnnn { emblem } { #1 } { #2 } { #3 } }
   }
 %    \end{macrocode}
 % \end{macro}
-%
-%
-% \begin{macro}{\njuname,\njuname*}
-% 定义南京大学标准名称。
-% \begin{arguments}
-%   \item 可选星号
-%   \item 颜色或者键值对
-%   \item 宽度
-%   \item 高度
-% \end{arguments}
-%    \begin{macrocode}
-\@@_check_cmd:nn { njuname }
-  {
-    \NewDocumentCommand \njuname { s O { njuviolet } m m }
-      {
-        \group_begin:
-          \@@_if_key_value_list:nTF { #2 }
-            {
-              \keys_set:nn { njuvisual } { #2 }
-              \clist_if_in:NVTF \c_@@_dept_name_clist \l_@@_dept_tl
-                {
-                  \@@_set_color:
-%    \end{macrocode}
-% 通过是否含有可选星号区分输出中英文名称。
-%    \begin{macrocode}
-                  \bool_if:NTF { #1 }
-                    {
-                       \@@_tikz_wrapper:nnn
-                        { \use:c { @@_path_name_ #2 _en } } { #3 } { #4 }
-                    }
-                    {
-                      \@@_tikz_wrapper:nnn
-                        { \use:c { @@_path_name_ #2 _cn } } { #3 } { #4 }
-                    }
-                }
-                {
-                  \msg_error:nnx { njuvisual }
-                    { unsupported-department } { \l_@@_dept_tl }
-                }
-            }
-            {
-              \tl_set:Nn \l_@@_color_a_tl { #2 }
-              \bool_if:NTF { #1 }
-                { \@@_tikz_wrapper:nnn { \@@_path_name_nju_en } { #3 } { #4 } }
-                { \@@_tikz_wrapper:nnn { \@@_path_name_nju_cn } { #3 } { #4 } }
-            }
-        \group_end:
-      }
-  }
-%    \end{macrocode}
-% \end{macro}
-%
 %
 % \begin{macro}{\njumotto}
-% 定义南京大学校训。
-% \begin{arguments}
-%   \item 颜色
-%   \item 宽度
-%   \item 高度
-% \end{arguments}
+% 定义南京大学校训。参数定义同 \tn{njuemblem}。
 %    \begin{macrocode}
-\@@_check_cmd:nn { njumotto }
+\@@_check_cmd:NF \njumotto
   {
-    \NewDocumentCommand \njumotto  { O {black} m m }
-      {
-        \group_begin:
-          \tl_set:Nn \l_@@_color_a_tl { #1 }
-          \@@_tikz_wrapper:nnn { \@@_path_motto } { #2 } { #3 }
-        \group_end:
-      }
+    \NewDocumentCommand \njumotto { O { black } m m }
+      { \@@_print:nnnn { motto } { #1 } { #2 } { #3 } }
   }
 %    \end{macrocode}
 % \end{macro}
 %
-%
 % \begin{macro}{\njuspirit}
-% 定义南京大学校风。
-% \begin{arguments}
-%   \item 颜色
-%   \item 宽度
-%   \item 高度
-% \end{arguments}
+% 定义南京大学校风。参数定义同 \tn{njuemblem}。
 %    \begin{macrocode}
-\@@_check_cmd:nn { njuspirit }
+\@@_check_cmd:NF \njuspirit
   {
-    \NewDocumentCommand \njuspirit { O {black} m m }
-      {
-        \group_begin:
-          \tl_set:Nn \l_@@_color_a_tl { #1 }
-          \@@_tikz_wrapper:nnn { \@@_path_spirit } { #2 } { #3 }
-        \group_end:
-      }
+    \NewDocumentCommand \njuspirit { O { black } m m }
+      { \@@_print:nnnn { spirit } { #1 } { #2 } { #3 } }
   }
 %</package>
 %    \end{macrocode}
 % \end{macro}
+%
 %
 % \subsection{生成文件}
 % \changes{v0.2}{2021/11/29}{提供导出 PDF 图像的方法。}
@@ -777,6 +820,21 @@ through XeTeX.
 \usetikzlibrary{backgrounds,external}
 \tikzexternalize[prefix=nju-]
 \let\FIG=\tikzsetnextfilename
+%    \end{macrocode}
+%
+% \subsection{颜色与图形}
+% \label{subsec:colors-and-curves}
+%
+% 本部分定义标准色彩以及用于绘图的 \pkg{tikz} 路径。
+% 由于路径本身长达数千行，故在此文档中隐去，仅保留介绍。
+% 有兴趣的同学可以自行查阅 \file{njuvisual-curves.dtx}。
+%
+% 此处为 \file{njuvisual-example.tex} 文件正文的开始。
+% 以下标注 |<example>| 的行将会进入该文件，供外置化使用。
+%    \begin{macrocode}
+\begin{document}
 %</example>
 %    \end{macrocode}
+%
+% \end{implementation}
 %

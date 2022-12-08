@@ -1,15 +1,19 @@
 @ECHO OFF
 
-@REM run under main foler or under scripts folder
+@REM run under current dir
+@REM ... or under main folder
 IF NOT EXIST "njuvisual.dtx" (
     CD ..
+)
+@REM ... or under source folder
+IF NOT EXIST "njuvisual.dtx" (
+    CD source
 )
 
 MKDIR "pngfiles"
 CD    "pngfiles"
 
-COPY /Y "..\njuvisual.dtx"                 .
-COPY /Y "..\njuvisual-curves.dtx"          .
+COPY /Y "..\njuvisual*.dtx" .
 
 xetex "njuvisual.dtx" > NUL
 
@@ -22,6 +26,7 @@ FOR %%A IN (*.pdf) DO "c:\Program Files\Inkscape\bin\inkscape.com" --export-type
 DEL "*.aux"
 DEL "*.auxlock"
 DEL "*.dpth"
+DEL "*.def"
 DEL "*.dtx"
 DEL "*.ins"
 DEL "*.log"

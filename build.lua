@@ -3,15 +3,16 @@
 -- Build script for njuvisual.
 -- run with `l3build`
 
-module       = "njuvisual"
+module        = "njuvisual"
 
-sourcefiles  = {"*.dtx"}
-installfiles = {"*.sty"}
-textfiles    = {"LICENSE", "*.md", "*.ins"}
-ctanreadme   = "README-CTAN.md"
+sourcefiledir = "source"
+sourcefiles   = {"*.dtx"}
+installfiles  = {"*.sty", "*.def"}
+textfiles     = {"LICENSE", "*.md", "*.ins"}
+ctanreadme    = "README-CTAN.md"
 
-unpackexe    = "xetex"
-unpackfiles  = {"njuvisual.dtx"}
+unpackexe     = "xetex"
+unpackfiles   = {"njuvisual.dtx"}
 
-typesetexe   = "xelatex"
-typesetfiles = {"njuvisual.dtx"}
+typesetexe    = "xelatex"
+typesetfiles  = {"njuvisual.dtx"}

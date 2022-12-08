@@ -1,15 +1,19 @@
 #!/usr/bin/env sh
 
-# run under main foler or under scripts folder
+# run under current dir
+# ... or under main folder
 if [ ! -f "njuvisual.dtx" ]; then
     cd ..
+fi
+# ... or under source folder
+if [ ! -f "njuvisual.dtx" ]; then
+    cd source
 fi
 
 mkdir -p "pngfiles"
 cd "pngfiles"
 
-cp -f "../njuvisual.dtx"            .
-cp -f "../njuvisual-curves.dtx"     .
+cp -f "../njuvisual*.dtx" .
 
 xetex "njuvisual.dtx" > /dev/null
 
@@ -22,6 +26,7 @@ inkscape --export-type="png" nju-*.pdf -h 1000
 rm *.aux
 rm *.auxlock
 rm *.dpth
+rm *.def
 rm *.dtx
 rm *.ins
 rm *.log
