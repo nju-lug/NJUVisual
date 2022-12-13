@@ -167,15 +167,15 @@ through XeTeX.
 %</internal>
 %
 %<package>\NeedsTeXFormat{LaTeX2e}
-%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.3.0 2022-12-08 23:19:00
+%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.3.0 2022-12-13 18:00:00
 %<!(driver|example)>  +0800 NJU LUG <git+nju-lug-email-3104-issue-@yaoge123.cn>$
 %<package>  {Nanjing University Visual Identity}
 %<package>\ProvidesExplPackage{njuvisual}
 %<package>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
 %
 %<*driver>
-\documentclass{ctxdoc}
-\usepackage{listings,njuvisual,tabularray}
+\documentclass[fontset=fandol]{ctxdoc}
+\usepackage{listings,njuvisual,tabularray,zhlineskip}
 \usepackage[firstpage=true]{background}
 \backgroundsetup{contents={\njuemblem[white!85!gray]{22cm}{!}},scale=1,angle=0,hshift=-4cm}
 \DeclareGraphicsExtensions{.pdf}
@@ -184,11 +184,32 @@ through XeTeX.
 \SetTblrStyle{caption-tag}{font=\bfseries}
 \DefTblrTemplate{caption-sep}{default}{\quad}
 \setlist[1]{labelindent=0.5em}
-\hypersetup{pdftitle={The njuvisual package - Display logos related to Nanjing University}}
 \hypersetup{
+  pdftitle={
+    The njuvisual package -
+    Display logos related to Nanjing University
+  },
   citecolor = njublue,
   linkcolor = njuviolet,
-  urlcolor  = njumagenta}
+  urlcolor  = njumagenta
+}
+\SetTextEnvironmentSinglespace{1.112}
+\SetMathEnvironmentSinglespace{1.112}
+\setsansfont{LexendDeca}
+\setmonofont{Iosevka}[
+  UprightFont = Iosevka Light,
+  ItalicFont  = Iosevka Light Italic,
+  BoldFont    = Iosevka Semibold
+]
+\setCJKmainfont{Source Han Serif SC}[
+  UprightFont = Source Han Serif SC SemiBold,
+  ItalicFont  = Source Han Serif SC Bold,
+  BoldFont    = Source Han Serif SC Heavy,
+  Language    = Chinese Simplified
+]
+\setmathfont{XITSMath-Regular}[
+  BoldFont = XITSMath-Bold,
+  Extension = .otf]
 \lstdefinestyle{style@base}
   {
     basewidth       = 0.5 em,
@@ -229,6 +250,16 @@ through XeTeX.
   \lstset{style=style@shell, #1}}{}
 \lstnewenvironment{latexexample}[1][]{%
   \lstset{style=style@latex, #1}}{}
+\ExplSyntaxOn
+\cs_new_protected:Npn \__njudoc_module_angle:Nn #1#2
+  {
+    \group_begin: \color { gray }    \ttfamily \textlangle \group_end:
+    \group_begin: \sffamily #2 \group_end:
+    \group_begin: \color { gray } #1 \ttfamily \textrangle \group_end:
+  }
+\cs_set_protected:Npn \__ctxdoc_module_angle:n #1
+  { \__njudoc_module_angle:Nn \c_empty_tl {#1} }
+\ExplSyntaxOff
 \begin{document}
   \DocInput{njuvisual.dtx}
   \DocInput{njuvisual-emblem.dtx}
@@ -257,7 +288,7 @@ through XeTeX.
 % 南京大学 Linux 用户组
 % \thanks{E-mail: \href{mailto:git+nju-lug-email-3104-issue-@yaoge123.cn}{git+nju-lug-email-3104-issue-@yaoge123.cn}}}
 %
-% \date{v0.3.0 \quad 2022-05-27}
+% \date{v0.3.0 \quad 2022-12-13}
 %
 % \changes{v0.1}{2021/11/21}{将 \pkg{njuvisual} 分离为独立宏包。}
 % \changes{v0.1}{2021/11/27}{完成文档编写并发布至 CTAN。}
@@ -266,13 +297,13 @@ through XeTeX.
 %
 % \maketitle
 %
+% \let\abstractname\relax
 % \begin{abstract}
 % 南京大学视觉形象规范化标准（\pkg{njuvisual}）宏包负责收集南京大学官方以及下属
 % 各院系制定的配色方案和标识，将这些矢量图标通过 \pkg{tikz} 曲线进行存储，并提
 % 供简明的接口以便在文档和幻灯片中使用。
 % \end{abstract}
 %
-% \def\abstractname{Abstract}
 % \begin{abstract}
 % The \pkg{njuvisual} package collects standard colors and logos related to
 % Nanjing University, saves the vector logos as \pkg{tikz} pictures and
@@ -351,8 +382,8 @@ through XeTeX.
 %       \SetCell[r=2]{c} 化学化工学院
 %         & |nju-chem-red|     & $0.28, 0.95, 0.84, 0   $ & \B{nju-chem-red}    \\
 %         & |nju-chem-gold|    & $0.40, 0.42, 0.60, 0   $ & \B{nju-chem-gold}   \\
-%       \SetCell[r=2]{c} 物理学院
-%         & |nju-physics-blue| & $0.86, 0.57, 0   , 0   $ & \B{nju-physics-blue}     \\
+%       物理学院
+%         & |nju-physics-blue| & $0.86, 0.57, 0   , 0   $ & \B{nju-physics-blue} \\
 %     \bottomrule
 %   \end{tblr}
 % \end{table}
