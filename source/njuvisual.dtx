@@ -25,6 +25,7 @@
 %                                 njuvisual-cs.dtx,
 %                                 njuvisual-dii.dtx,
 %                                 njuvisual-eng.dtx,
+%                                 njuvisual-physics.dtx,
 %                                 njuvisual-software.dtx,
 %                                 njuvisual-end.dtx,
 %           and the derived files njuvisual.ins,
@@ -35,6 +36,7 @@
 %                                 njuvisual-emblem-chem.def,
 %                                 njuvisual-emblem-cs.def,
 %                                 njuvisual-emblem-dii.def,
+%                                 njuvisual-emblem-eng.def,
 %                                 njuvisual-emblem-eng.def,
 %                                 njuvisual-emblem-software.def,
 %                                 njuvisual-motto-nju.def,
@@ -66,7 +68,7 @@
 \preamble
 
 Copyright (C) 2021 - 2022
-by Nanjing University Linux User Group 
+by Nanjing University Linux User Group
 % <git+nju-lug-email-3104-issue-@yaoge123.cn>
 
 This file may be distributed and/or modified under the conditions of
@@ -96,6 +98,7 @@ through XeTeX.
                                   \from{\jobname-cs.dtx}{example}
                                   \from{\jobname-dii.dtx}{example}
                                   \from{\jobname-eng.dtx}{example}
+                                  \from{\jobname-physics.dtx}{example}
                                   \from{\jobname-software.dtx}{example}
                                   \from{\jobname-end.dtx}{example}}
     \file{\jobname.sty}  {\from{\jobname.dtx}{package}
@@ -105,18 +108,20 @@ through XeTeX.
                           \from{\jobname-cs.dtx}{color}
                           \from{\jobname-dii.dtx}{color}
                           \from{\jobname-eng.dtx}{color}
+                          \from{\jobname-physics.dtx}{color}
                           \from{\jobname-software.dtx}{color}}
     \nopreamble\nopostamble
-    \file{\jobname-emblem-nju.def}  {\from{\jobname-emblem.dtx}{emblem-nju}}
-    \file{\jobname-name-zh-nju.def} {\from{\jobname-name.dtx}{name-zh-nju}}
-    \file{\jobname-name-en-nju.def} {\from{\jobname-name.dtx}{name-en-nju}}
-    \file{\jobname-motto-nju.def}   {\from{\jobname-motto.dtx}{motto-nju}}
-    \file{\jobname-spirit-nju.def}  {\from{\jobname-spirit.dtx}{spirit-nju}}
+    \file{\jobname-emblem-nju.def}       {\from{\jobname-emblem.dtx}{emblem-nju}}
+    \file{\jobname-name-zh-nju.def}      {\from{\jobname-name.dtx}{name-zh-nju}}
+    \file{\jobname-name-en-nju.def}      {\from{\jobname-name.dtx}{name-en-nju}}
+    \file{\jobname-motto-nju.def}        {\from{\jobname-motto.dtx}{motto-nju}}
+    \file{\jobname-spirit-nju.def}       {\from{\jobname-spirit.dtx}{spirit-nju}}
     \file{\jobname-emblem-ai.def}        {\from{\jobname-ai.dtx}{emblem-ai}}
     \file{\jobname-emblem-chem.def}      {\from{\jobname-chem.dtx}{emblem-chem}}
     \file{\jobname-emblem-cs.def}        {\from{\jobname-cs.dtx}{emblem-cs}}
     \file{\jobname-emblem-dii.def}       {\from{\jobname-dii.dtx}{emblem-dii}}
     \file{\jobname-emblem-eng.def}       {\from{\jobname-eng.dtx}{emblem-eng}}
+    \file{\jobname-emblem-physics.def}   {\from{\jobname-physics.dtx}{emblem-physics}}
     \file{\jobname-emblem-software.def}  {\from{\jobname-software.dtx}{emblem-software}}
 %<*internal>
   \usedir{source/latex/njuvisual}
@@ -134,6 +139,18 @@ through XeTeX.
 \Msg{*                                                           *}
 \Msg{*     njuvisual.ins                                         *}
 \Msg{*     njuvisual.sty                                         *}
+\Msg{*     njuvisual-emblem-nju.def,                             *}
+\Msg{*     njuvisual-emblem-ai.def,                              *}
+\Msg{*     njuvisual-emblem-chem.def,                            *}
+\Msg{*     njuvisual-emblem-cs.def,                              *}
+\Msg{*     njuvisual-emblem-dii.def,                             *}
+\Msg{*     njuvisual-emblem-eng.def,                             *}
+\Msg{*     njuvisual-emblem-eng.def,                             *}
+\Msg{*     njuvisual-emblem-software.def,                        *}
+\Msg{*     njuvisual-motto-nju.def,                              *}
+\Msg{*     njuvisual-name-zh-nju.def,                            *}
+\Msg{*     njuvisual-name-en-nju.def,                            *}
+\Msg{*     njuvisual-spirit-nju.def,                             *}
 \Msg{*                                                           *}
 \Msg{* To produce the documentation, run the file njuvisual.dtx  *}
 \Msg{* through XeLaTeX.                                          *}
@@ -150,7 +167,7 @@ through XeTeX.
 %</internal>
 %
 %<package>\NeedsTeXFormat{LaTeX2e}
-%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.3.0 2022-12-08 23:19:00 
+%<!(driver|example)>\GetIdInfo $Id: njuvisual.dtx 0.3.0 2022-12-08 23:19:00
 %<!(driver|example)>  +0800 NJU LUG <git+nju-lug-email-3104-issue-@yaoge123.cn>$
 %<package>  {Nanjing University Visual Identity}
 %<package>\ProvidesExplPackage{njuvisual}
@@ -223,6 +240,7 @@ through XeTeX.
   \DocInput{njuvisual-cs.dtx}
   \DocInput{njuvisual-dii.dtx}
   \DocInput{njuvisual-eng.dtx}
+  \DocInput{njuvisual-physics.dtx}
   \DocInput{njuvisual-software.dtx}
   \DocInput{njuvisual-end.dtx}
   \PrintChanges
@@ -314,25 +332,27 @@ through XeTeX.
 %   \centering
 %   \begin{tblr}[expand=\B]{cccc}
 %     \toprule
-%       名称 & 颜色名称     & CMYK 数值                & 示例                \\
+%       名称 & 颜色名称        & CMYK 数值                & 示例                \\
 %     \midrule
 %       \SetCell[r=5]{c} 南京大学
-%         & |njuviolet|     & \SetCell[r=2]{c}
+%         & |njuviolet|        & \SetCell[r=2]{c}
 %                             $0.50, 1   , 0   , 0.40$ &
 %                                       \SetCell[r=2]{c} \B{njuviolet}       \\
-%         & |njupurple|     &                          &                     \\
-%         & |njumagenta|    & $0.05, 1   , 0.55, 0   $ & \B{njumagenta}      \\
-%         & |njublue|       & $0.80, 0.50, 0   , 0   $ & \B{njublue}         \\
-%         & |njuyellow|     & $0   , 0.30, 1   , 0   $ & \B{njuyellow}       \\
+%         & |njupurple|        &                          &                     \\
+%         & |njumagenta|       & $0.05, 1   , 0.55, 0   $ & \B{njumagenta}      \\
+%         & |njublue|          & $0.80, 0.50, 0   , 0   $ & \B{njublue}         \\
+%         & |njuyellow|        & $0   , 0.30, 1   , 0   $ & \B{njuyellow}       \\
 %       \SetCell[r=2]{c} 人工智能学院
-%         & |nju-ai-blue|   & $0.75, 0.65, 0   , 0   $ & \B{nju-ai-blue}     \\
-%         & |nju-ai-orange| & $0   , 0.75, 1   , 0   $ & \B{nju-ai-orange}   \\
+%         & |nju-ai-blue|      & $0.75, 0.65, 0   , 0   $ & \B{nju-ai-blue}     \\
+%         & |nju-ai-orange|    & $0   , 0.75, 1   , 0   $ & \B{nju-ai-orange}   \\
 %       \SetCell[r=2]{c} 计算机科学与技术系
-%         & |nju-cs-blue|   & $0.89, 0.66, 0.13, 0   $ & \B{nju-cs-blue}     \\
-%         & |nju-cs-green|  & $0.60, 0.23, 1   , 0   $ & \B{nju-cs-green}    \\
+%         & |nju-cs-blue|      & $0.89, 0.66, 0.13, 0   $ & \B{nju-cs-blue}     \\
+%         & |nju-cs-green|     & $0.60, 0.23, 1   , 0   $ & \B{nju-cs-green}    \\
 %       \SetCell[r=2]{c} 化学化工学院
-%         & |nju-chem-red|  & $0.28, 0.95, 0.84, 0   $ & \B{nju-chem-red}    \\
-%         & |nju-chem-gold| & $0.40, 0.42, 0.60, 0   $ & \B{nju-chem-gold}   \\
+%         & |nju-chem-red|     & $0.28, 0.95, 0.84, 0   $ & \B{nju-chem-red}    \\
+%         & |nju-chem-gold|    & $0.40, 0.42, 0.60, 0   $ & \B{nju-chem-gold}   \\
+%       \SetCell[r=2]{c} 物理学院
+%         & |nju-physics-blue| & $0.86, 0.57, 0   , 0   $ & \B{nju-physics-blue}     \\
 %     \bottomrule
 %   \end{tblr}
 % \end{table}
@@ -401,10 +421,11 @@ through XeTeX.
 %     \toprule
 %       名称 & 选项名称 & emblem & name & name* \\
 %     \midrule
-%       匡亚明学院             & |dii|      & \B & & \\
-%       现代工程与应用科学学院 & |eng|      & \B & & \\
 %       人工智能学院           & |ai|       & \B & & \\
 %       计算机科学与技术系     & |cs|       & \B & & \\
+%       匡亚明学院             & |dii|      & \B & & \\
+%       现代工程与应用科学学院 & |eng|      & \B & & \\
+%       物理学院               & |physics|  & \B & & \\
 %       软件学院               & |software| & \B & & \\
 %     \bottomrule
 %   \end{tblr}
@@ -522,7 +543,7 @@ through XeTeX.
 % 定义受图标支持的南京大学院系名单。
 %    \begin{macrocode}
 \clist_const:Nn \c_@@_dept_emblem_clist
-  { nju, dii, eng, cs, ai, software, chem }
+  { nju, ai, cs, chem, dii, eng, physics, software }
 %    \end{macrocode}
 % \end{variable}
 %
@@ -536,7 +557,7 @@ through XeTeX.
 % \begin{variable}{\c_@@_dept_color_clist}
 % 定义受色彩支持的南京大学院系名单。
 %    \begin{macrocode}
-\clist_const:Nn \c_@@_dept_color_clist { cs, ai, chem }
+\clist_const:Nn \c_@@_dept_color_clist { ai, cs, chem, physics }
 %    \end{macrocode}
 % \end{variable}
 %
@@ -684,7 +705,7 @@ through XeTeX.
 %    \begin{macrocode}
 \cs_new:Npn \@@_import_curve:nF #1
   { \file_get:nnNF { njuvisual- #1 .def } { \ExplSyntaxOn } \l_@@_curve_tl }
-\cs_new:Npn \@@_import_curve:n #1 
+\cs_new:Npn \@@_import_curve:n #1
   { \@@_import_curve:nF {#1} { \BOOM } }
 %    \end{macrocode}
 % \end{macro}

@@ -41,7 +41,7 @@ v0.2.0 版以后，本宏包提供了将内置矢量图导出为图片的方法�
 | 信息管理学院           | im        |               |
 | 社会学院               | sociology |               |
 | 数学系                 | math      |               |
-| 物理学院               | physics   |               |
+| 物理学院               | physics   | color, emblem |
 | 天文与空间科学学院     | astronomy |               |
 | 化学化工学院           | chem      | color, emblem |
 | 计算机科学与技术系     | cs        | color, emblem |
